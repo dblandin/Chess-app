@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+
 	def new
 		@game = Game.new
 	end
@@ -13,6 +14,8 @@ class GamesController < ApplicationController
 	end
 
 	def update
+		@game = Game.find(params[:id])
+		@game.update_attributes(game_params)
 	end
 	
 	private
