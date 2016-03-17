@@ -10,7 +10,16 @@ gem 'rails', '4.0.1'
 gem 'pg'
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails'
+
+# Sass-powered version of Bootstrap 3
+gem 'bootstrap-sass', '~> 3.3.5.1'
+
+# Use sprockets to concatenate and serve JS, CoffeeScript, CSS, LESS, Sass, and SCSS
+gem 'sprockets', '2.11.0'
+
+# Add user authentication
+gem 'devise', '>= 3.2.4'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
