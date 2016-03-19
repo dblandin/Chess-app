@@ -1,6 +1,9 @@
 class Game < ActiveRecord::Base
 
-  has_many :pieces
-  has_many :users
   
+  belongs_to :white_player, class_name: 'User'
+  belongs_to :black_player, class_name: 'User'
+  belongs_to :winner, class_name: 'User'
+  has_many :pieces
+
 end
