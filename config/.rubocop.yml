@@ -6,7 +6,7 @@ AllCops:
     - config/**/*
 
 Documentation:
- 	Enabled: false
+  Enabled: false
 
 Rails:
   Enabled: true
