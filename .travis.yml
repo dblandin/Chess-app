@@ -5,8 +5,7 @@ before_install: gem update --remote bundler
 install:
 - bundle install --retry=3
 script:
-# rake db:test:prepare is done automatically now. 
-# bundle exec rake db:test:prepare
+- bundle exec rake db:test:prepare
 - bundle exec rspec
 deploy:
   provider: heroku
