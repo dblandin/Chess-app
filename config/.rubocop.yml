@@ -4,8 +4,9 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - config/**/*
-  Documentation:
-  	Enabled: false
+
+Documentation:
+ 	Enabled: false
 
 Rails:
   Enabled: true
