@@ -32,6 +32,10 @@ Documentation:
 LineLength:
   Enabled: false
 
+# Extend Max Length of Lines
+Metrics/LineLength:
+  Max: 99
+
 # Disables "Method has too many lines" warning
 MethodLength:
   Enabled: false
