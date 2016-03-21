@@ -4,6 +4,8 @@ AllCops:
     - db/**/*
     - vendor/**/*
     - config/**/*
+  Documentation:
+  	Enabled: false
 
 Rails:
   Enabled: true
@@ -31,10 +33,6 @@ Documentation:
 # Disables "Line is too long" warning
 LineLength:
   Enabled: false
-
-# Extend Max Length of Lines
-Metrics/LineLength:
-  Max: 99
 
 # Disables "Method has too many lines" warning
 MethodLength:
