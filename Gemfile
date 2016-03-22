@@ -14,7 +14,8 @@ gem 'sass-rails'
 # Sass-powered version of Bootstrap 3
 gem 'bootstrap-sass', '~> 3.3.5.1'
 
-# Use sprockets to concatenate and serve JS, CoffeeScript, CSS, LESS, Sass, and SCSS
+# Use sprockets to concatenate and serve JS,
+# CoffeeScript, CSS, LESS, Sass, and SCSS
 gem 'sprockets', '2.11.0'
 
 # Add user authentication
@@ -25,6 +26,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+# Add Rubocop for style consistency
+gem 'rubocop', '~> 0.38.0', require: false
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
