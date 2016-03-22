@@ -8,6 +8,8 @@ FactoryGirl.define do
   end
 
   factory :game do
+    black_player_id 1
+    white_player_id 2
     sequence :name do |n|
       "dummygame#{n}"
     end
@@ -15,8 +17,11 @@ FactoryGirl.define do
   end
 
   factory :piece do
-    current_row_index {rand(0..7)}
-    current_column_index {rand(0..7)}
+    type nil
+    current_row_index nil
+    current_column_index nil
+    color nil
+    captured nil
   end
     
 end
