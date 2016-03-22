@@ -7,6 +7,7 @@ install:
 script:
 - bundle exec rake db:test:prepare
 - bundle exec rspec
+- bundle exec rubocop
 deploy:
   provider: heroku
   api_key:
@@ -14,5 +15,3 @@ deploy:
   app: Chess-app
   on:
     repo: TeamAlphaChess/Chess-app
-
-    
