@@ -11,6 +11,5 @@ RSpec.describe Game, type: :model do
       game = Game.create(name: 'test')
       expect(game.open_seat?).to eq true
     end
-
   end
 end

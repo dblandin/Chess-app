@@ -5,6 +5,6 @@ class Game < ActiveRecord::Base
   has_many :pieces
 
   def open_seat?
-    return true if self.white_player_id == nil or black_player_id == nil
+    return true if white_player_id.nil? || black_player_id.nil?
   end
 end
