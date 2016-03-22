@@ -3,8 +3,8 @@ FactoryGirl.define do
     sequence :email do |n|
       "dummyEmail#{n}@gmail.com"
     end
-    password "secretPassword"
-    password_confirmation "secretPassword" 
+    password 'secretPassword'
+    password_confirmation 'secretPassword'
   end
 
   factory :game do
@@ -13,7 +13,6 @@ FactoryGirl.define do
     sequence :name do |n|
       "dummygame#{n}"
     end
-    
   end
 
   factory :piece do
@@ -23,5 +22,4 @@ FactoryGirl.define do
     color nil
     captured nil
   end
-    
 end

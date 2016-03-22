@@ -5,5 +5,4 @@ class Piece < ActiveRecord::Base
 
   def obstructed?(destination_x, destination_y)
   end
-
 end

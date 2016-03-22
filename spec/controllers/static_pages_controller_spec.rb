@@ -6,8 +6,8 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'renders the home page' do
       expect(get: root_url(subdomain: nil)).to route_to(
       	controller: 'static_pages',
-      	action: 'show',
-      	id: 'home')
+        action: 'show',
+        id: 'home')
     end
   end
 
@@ -18,7 +18,5 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to have_http_status(404)
       expect(response).to render_template(:file => "#{Rails.root}/public/404.html")
     end
-
   end
-
 end
