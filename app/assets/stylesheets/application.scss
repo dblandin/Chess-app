@@ -9,7 +9,23 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+
  */
+
+ /* =============================================
+Base styles. Be very careful of the order here.
+ ==============================================*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "ionicons";
+@import "imports/montserrat";
+@import "base_styles/themes";
+@import "base_styles/bootstrap-override";
+
+/* =============================================
+Order doesn't matter as much for these below:
+==============================================*/
+
+@import "static_pages.scss";
+@import "games.scss";
+@import "users.scss";

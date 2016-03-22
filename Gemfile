@@ -44,6 +44,9 @@ gem 'simple_form'
 # Static pages controller plugin
 gem 'high_voltage', '~> 2.4.0'
 
+# Icon fonts for App (not using bootstrap icons)
+gem 'ionicons-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
 end

@@ -1,0 +1,37 @@
+/* ====================================
+Colors
+======================================*/
+
+            $white:     rgb(255, 255, 255);
+        $dark-gray:     rgb(101, 102, 104);
+       $light-gray:     rgb(228, 229, 230);
+           $yellow:     rgb(254, 224, 13);
+            $green:     rgb(98, 190, 108);
+           $orange:     rgb(248, 155, 56);
+              $red:     rgb(227, 94, 90);
+
+/* ====================================
+Overlays
+======================================*/
+
+     $dark-overlay:     rgba(77, 77, 77, 0.9);
+
+/* ====================================
+Box Shadows
+======================================*/
+
+    /* Header or footer only */
+    $header-shadow:     0px 5.4px 5.4px rgba(77, 77, 77, 0.36);
+    $footer-shadow:     0px -6.28px -6.28px rgba(77, 77, 77, 0.36);
+
+    /* Any other element with a box-shadow */
+   $element-shadow:     0.35px 1.42px 1.77px rgba(77, 77, 77, 0.36);
+
+ /* ====================================
+ Main Typeface
+ ======================================*/
+
+        $font-bold:     montserratbold;
+     $font-regular:     montserratregular;
+       $font-light:     montserratlight;
+  $font-ultralight:     montserratultra_light;
