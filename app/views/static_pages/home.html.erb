@@ -1,5 +1,19 @@
 <!-- Passes the current page title to application.html.erb -->
 <%= content_for :page_title, 'Home' %>
 
-
 <h1>Hello World, this is TeamAlphaChess</h1>
+
+<br  />
+<br  />
+
+<h2>Available Games</h2>
+<hr  />
+
+<% @games.each do |game| %>
+  <% if game.open_seat? == true %>
+    <p>
+      <%= link_to game.name, game_path(game) %>
+    </p>
+  <% end %>
+
+<% end %>

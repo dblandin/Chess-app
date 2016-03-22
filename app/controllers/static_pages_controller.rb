@@ -5,6 +5,7 @@ class StaticPagesController < ApplicationController
   layout :layout_for_page
 
   def show
+    @games = Game.all
   	if valid_page?
   	  render template: "static_pages/#{params[:id]}"
   	else
