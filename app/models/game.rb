@@ -7,5 +7,4 @@ class Game < ActiveRecord::Base
   def open_seat?
     white_player_id.nil? || black_player_id.nil?
   end
-
 end
