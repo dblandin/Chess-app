@@ -1,4 +1,4 @@
- GEM
+GEM
   remote: https://rubygems.org/
   specs:
     actionmailer (4.0.1)
@@ -26,8 +26,8 @@
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
-    autoprefixer-rails (6.3.4)
     ast (2.2.0)
+    autoprefixer-rails (6.3.4)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.5.1)
@@ -156,9 +156,8 @@
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (0.3.47)
-    uglifier (2.7.2)
-      execjs (>= 0.3.0)
-      json (>= 1.8.0)
+    uglifier (3.0.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (1.0.2)
     warden (1.2.6)
       rack (>= 1.0)
