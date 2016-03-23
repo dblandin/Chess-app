@@ -38,3 +38,7 @@ LineLength:
 # Disables "Method has too many lines" warning
 MethodLength:
   Enabled: false
+
+# Disable the anoying Tab detected for using tabs when indenting
+Style/Tab:
+  Enabled: false

@@ -3,6 +3,10 @@ class GamesController < ApplicationController
     @game = Game.new
   end
 
+  def index
+    @games = Game.all
+  end
+
   def create
     @game = Game.create(game_params)
     redirect_to root_path
