@@ -1,15 +1,14 @@
 # Controller for static html content pages
 class StaticPagesController < ApplicationController
   include HighVoltage::StaticPage
-
   layout :layout_for_page
 
   def show
-  	if valid_page?
-  	  render template: "static_pages/#{params[:id]}"
-  	else
-  	  render file: 'public/404.html', status: 404
-  	end
+    if valid_page?
+      render template: "static_pages/#{params[:id]}"
+    else
+      render file: 'public/404.html', status: 404
+    end
   end
 
   private
@@ -19,7 +18,7 @@ class StaticPagesController < ApplicationController
   # will follow the application.html.erb
   # layout.
   def layout_for_page
-  	'application'
+    'application'
   end
 
   def valid_page?
@@ -29,5 +28,4 @@ class StaticPagesController < ApplicationController
       )
     )
   end
-
 end
