@@ -1,0 +1,25 @@
+/* =============================================
+App Layout Template
+==============================================*/
+
+#mainContentContainer {
+  background: $green;
+  position: relative;
+  right: 0px;
+  height: 100%;
+  position: relative;
+}
+
+body, html {
+  min-height: 100vh;
+  background-color: $dark-gray;
+}
+
+.header-container {
+  height: 100%;
+}
+
+.main-container {
+  height: calc(100vh - ( #{$navbar-height} + #{$footer-height} ) );
+  position: relative;
+}
