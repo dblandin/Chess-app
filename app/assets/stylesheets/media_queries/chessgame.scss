@@ -1,0 +1,193 @@
+@media (min-width: $screen-sm-min) and ( max-height: 480px ) {
+  .chessboard {
+    max-width: 128px;
+  }
+
+  .game-bar {
+    max-width: 128px;
+    height: 20px;
+  }
+}
+
+@media (min-height: 480px) {
+  .chessboard {
+    max-width: 240px;
+  }
+
+  .game-bar {
+    max-width: 240px;
+    height: 40px;
+  }
+}
+
+@media (min-height: 540px ) {
+
+  .chessboard {
+    margin: 25px auto;
+    max-width: 270px;
+  }
+
+  .game-bar {
+    max-width: 270px;
+    height: 45px;
+  }
+
+}
+
+@media (min-height: 650px) {
+
+  .chessboard {
+    margin: 34px auto;
+    max-width: 320px;
+  }
+
+  .game-bar {
+    max-width: 320px;
+    height: 50px;
+  }
+}
+
+@media (min-height: 650px) and ( min-width: $screen-sm-min ) {
+
+  .chessboard {
+    margin: 34px auto;
+    max-width: 350px;
+  }
+
+  .game-bar {
+    max-width: 350px;
+    height: 50px;
+  }
+}
+
+
+@media (min-height: 800px ) {
+
+  .chessgame-container {
+    padding: 0 40px;
+  }
+
+  .chessboard {
+    margin: 25px auto;
+    max-width: 470px;
+  }
+
+  .game-bar {
+    max-width: 470px;
+    height: 60px;
+  }
+}
+
+@media (min-height: 800px ) and (min-width: $screen-sm-min) {
+
+  .chessboard {
+    margin: 25px auto;
+    max-width: 450px;
+  }
+
+  .game-bar {
+    max-width: 450px;
+    height: 50px;
+  }
+
+}
+
+@media (min-height: 800px ) and (min-width: $screen-sm-min) {
+
+  .chessboard {
+    margin: 25px auto;
+    max-width: 500px;
+  }
+
+  .game-bar {
+    max-width: 500px;
+    height: 53px;
+  }
+
+}
+
+
+@media (min-height: 1000px ) and (min-width: $screen-sm-min){
+
+  .chessgame-container {
+    padding: 0 20px;
+  }
+
+  .chessboard {
+    margin: 40px auto;
+    max-width: 500px;
+  }
+
+  .game-bar {
+    max-width: 500px;
+    height: 60px;
+  }
+}
+
+@media (min-height: 1000px ) and (min-width: $screen-md-min){
+
+  .chessgame-container {
+    padding: 0 20px;
+  }
+
+  .chessboard {
+    margin: 50px auto;
+    max-width: 600px;
+  }
+
+  .game-bar {
+    max-width: 600px;
+    height: 65px;
+  }
+}
+
+@media (min-height: 1200px ) and (min-width: $screen-lg-min){
+
+  .chessgame-container {
+    padding: 0 20px;
+  }
+
+  .chessboard {
+    margin: 50px auto;
+    max-width: 700px;
+  }
+
+  .game-bar {
+    max-width: 700px;
+    height: 70px;
+  }
+}
+
+@media (min-height: 1400px ) and (min-width: $screen-lg-min){
+
+  .chessgame-container {
+    padding: 0 20px;
+  }
+
+  .chessboard {
+    margin: 55px auto;
+    max-width: 800px;
+  }
+
+  .game-bar {
+    max-width: 800px;
+    height: 90px;
+  }
+}
+
+@media (min-height: 1600px ) and (min-width: $screen-lg-min){
+
+  .chessgame-container {
+    padding: 0 20px;
+  }
+
+  .chessboard {
+    margin: 60px auto;
+    max-width: 900px;
+  }
+
+  .game-bar {
+    max-width: 900px;
+    height: 95px;
+  }
+}

@@ -1,36 +1,30 @@
 $(document).ready(function() {
 
   // Initial variables
+
+  var mainSideNavTrigger = $('#mainSideNavTrigger');
+  var mainSideNav = $('#mainSideNav');
+  var mainContentContainer = $('#mainContentContainer');
   var mainSideNavOpen = false;
-  var mainSideNavTrigger = document.getElementById('mainSideNavTrigger');
-  var mainSideNav = document.getElementById('mainSideNav');
-  var mainContentContainer = document.getElementById('mainContentContainer');
 
   // Listeners
-  mainSideNavTrigger.addEventListener('click', toggleMainSideNav);
+  mainSideNavTrigger.on('click', function() {
+    if (mainSideNavOpen == false) {
+      mainContentContainer.animate({
+        right: mainSideNav.width
+      }, 'slow', 'linear', function() {
 
-  // Event Functions
-  function toggleMainSideNav() {
+        mainSideNav.fadeIn();
 
-    if (mainSideNavOpen === false) {
+      });
 
-      var offsetWidth = String(mainSideNav.clientWidth) + 'px';
-      mainContentContainer.style.right = offsetWidth;
-      mainSideNav.style.opacity = 1;
-      mainSideNavOpen = true;
+
+    } else {
+
+
     }
 
-    else {
-
-      mainContentContainer.style.right = 0;
-      mainSideNav.style.opacity = 0;
-      mainSideNavOpen = false;
-    }
-  }
-
-
-
-
+  });
 
 
 });
