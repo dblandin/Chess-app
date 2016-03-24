@@ -18,7 +18,9 @@ class Piece < ActiveRecord::Base
 
   def diaganol?(destination_row, destination_col)
     # is the row and column different?
-    (current_row_index != destination_row) && (current_column_index != destination_col)
+    row_diff = current_row_index - destination_row
+    col_diff = current_column_index - destination_col
+    row_diff == col_diff
   end
 
   def obstructed?(destination_row, destination_col)
