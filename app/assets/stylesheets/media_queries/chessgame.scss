@@ -20,7 +20,7 @@
   }
 }
 
-@media (min-height: 540px ) {
+@media (min-height: 540px ) and (min-width: 321px) {
 
   .chessboard {
     margin: 25px auto;
@@ -34,7 +34,7 @@
 
 }
 
-@media (min-height: 650px) {
+@media (min-height: 650px) and (min-width: 321px) {
 
   .chessboard {
     margin: 34px auto;
@@ -61,7 +61,7 @@
 }
 
 
-@media (min-height: 800px ) {
+@media (min-height: 800px ) and (min-width: 500px) {
 
   .chessgame-container {
     padding: 0 40px;
