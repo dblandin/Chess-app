@@ -3,79 +3,87 @@ class Piece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user, class_name: 'User'
 
-  def obstructed?(destination_row, destination_col)
-
-=begin  * Sample Chessboard *
-            0 1 2 3 4 5 6 7
-            - - - - - - - -
-        0 | 0 1 0 0 0 1 0 0
-        1 | 0 0 0 0 0 0 0 0
-        2 | 0 0 0 0 0 0 0 0
-        3 | 0 0 0 0 0 0 0 0
-        4 | 0 0 0 0 0 0 0 0
-        5 | 0 0 0 0 0 0 0 0
-        6 | 0 0 0 0 0 0 0 0
-        7 | 0 0 0 0 0 0 0 0
-=end
+# * Sample Chessboard *
+  # 0 1 2 3 4 5 6 7
+#     - - - - - - - -
+# 0 | 0 1 0 0 0 1 0 0
+# 1 | 0 0 0 0 0 0 0 0
+# 2 | 0 0 0 0 0 0 0 0
+# 3 | 0 0 0 0 0 0 0 0
+# 4 | 0 0 0 0 0 0 0 0
+# 5 | 0 0 0 0 0 0 0 0
+# 6 | 0 0 0 0 0 0 0 0
+# 7 | 0 0 0 0 0 0 0 0
 
     # determine if we should march forward of backwards
     # actually march forwards and backwards to build an array of spaces
     # determine if a piece is in the square from the position.
 
-    current_piece_column_index = self.current_column_index
-    current_piece_row_index = self.current_row_index
-    # Determine number of spaces we need to check
-      row_diff = destination_row - current_piece_row_index
-      col_diff = destination_col - current_piece_column_index
 
-      delta = something ? 1 : -1
-
-    #HORIZONTAL CHECK
-    # spaces = []
-
-    # current_x_position = self.current_column_index - delta
-    # while current_x_position != self.current_column_index - delta do
-    #   spaces << [current_x_position, destination_y]
-    #   current_x_position += delta
-    # end
-
-    # while col_diff != current_piece_column_index do
-    #   spaces.push(curent_piece_row_index,col_diff)
-    #   col_diff -= 1
-    # end
-
-    # if current_pos = 1,1, destination is 5,1, then array is
-    # spaces= [5,1], [4,1], [3,1], [2,1]
-    # spaces.each do |row_index, col_index|
-
-    # if game.pieces(row_index, col_index) != nil
-    #    return true
-    #  end
-  # end
-
+  def horizontal?(destination_row, destination_col)
+  # is the row the same, but the col different?
+    (current_row_index == destination_row) && (current_column_index != destination_col)
   end
 
+  def vertical?(destination_row, destination_col)
+  # is the column the same, but the row different?
+    (current_column_index == destination_col) && (current_row_index != destination_row)
+  end
 
+  def diaganol?(destination_row, destination_col)
+  # is the row and column different?
+    (current_row_index != destination_row) && (current_column_index != destination_col)
+  end
+
+  def obstructed?(destination_row, destination_col)
+    return horizontal_move(destination_row, destination_col) if horizontal?(destination_row, destination_col)
+    return vertical_move(destination_row, destination_col) if vertical?(destination_row, destination_col)
+    return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
+  end
 
   def horizontal_move(destination_row, destination_col)
-    # current_column_index, current_row_index
-    # piece = game.pieces.find_by(current_row_index, current_column_index)
-    # current_column_index = destination_x
-    # return game.pieces.update(current_row_index, current_column_index)
+    if current_column_index < destination_col
+      (current_column_index + 1...destination_col).each do |col|
+        return true if game.pieces.where(current_row_index: self.current_row_index, current_column_index: col).exists?
+      end
+    else
+      current_column_index > destination_col
+      (destination_col + 1...current_column_index).each do |col|
+        return true if game.pieces.where(current_row_index: self.current_row_index, current_column_index: col).exists?
+      end
+    end
   end
 
   def vertical_move(destination_row, destination_col)
-    # current_column_index, current_row_index
-    # current_row_index = destination_y
+    if current_row_index < destination_row
+      (current_row_index + 1...destination_row).each do |row|
+      return true if game.pieces.where(current_row_index: row, current_column_index: self.current_column_index).exists?
+      end
+    else
+      (destination_row + 1...current_row_index).each do |row|
+      return true if game.pieces.where(current_row_index: row, current_column_index: self.current_column_index).exists?
+      end
+    end
   end
+  
+  # def diagonal_move(destination_row, destination_col)
+  #     (current_row_index + 1...destination_row).each do |row|
+  #       return true if game.pieces.where(current_row_index: row, current_column_index: self.current_column_index).exists?
+  #     end
+  #     (current_column_index + 1...destination_col).each do |col|
+  #     return true if game.pieces.where(current_row_index: self.current_row_index, current_column_index: col).exists?
+  #     end
 
-  def diagonal_move(destination_row, destination_col)
-    # current_column_index, current_row_index
-    # current_column_index = destination_x
-    # current_row_index = destination_y
-  end
+    # else
+    #   (destination_row + 1...current_row_index).each do |row|
+    #   return true if game.pieces.where(current_row_index: row, current_column_index: self.current_column_index).exists?
+    #   end
+    # end
 
-  def check_destination
-  end
+  # def valid_destination?(destination_row, destination_col)
+  #   return true if game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
+  # end
 
+  # def vaild_input
+  # end
 end
