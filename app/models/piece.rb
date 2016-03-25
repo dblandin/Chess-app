@@ -3,7 +3,7 @@ class Piece < ActiveRecord::Base
   belongs_to :user, class_name: 'User'
 
   def obstructed?(destination_row, destination_col)
-    return horizontal_move(destination_col) if horizontal?(destination_row, destination_col)
+    return horizontal_move(destination_row, destination_col) if horizontal?(destination_row, destination_col)
     return vertical_move(destination_row) if vertical?(destination_row, destination_col)
     return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
   end
@@ -23,17 +23,33 @@ class Piece < ActiveRecord::Base
     ((current_row_index - destination_row).abs) == ((current_column_index - destination_col).abs)
   end
 
-  def horizontal_move(destination_col)
-    if current_column_index < destination_col
-      (current_column_index + 1...destination_col).each do |col|
-        return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
-      end
-    else
-      (destination_col + 1...current_column_index).each do |col|
-        return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
-      end
+  def horizontal_move(destination_row, destination_col)
+    delta_col = current_column_index < destination_col ? 1 : -1
+    spaces = []
+
+    current_col_position = current_column_index + delta_col
+
+    while current_col_position != destination_col do
+      spaces << [destination_row, current_col_position]
+      current_col_position += delta_col
+    end
+
+    spaces.each do |row, col|
+      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
     end
   end
+
+  # def horizontal_move(destination_col)
+  #   if current_column_index < destination_col
+  #     (current_column_index + 1...destination_col).each do |col|
+  #       return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
+  #     end
+  #   else
+  #     (destination_col + 1...current_column_index).each do |col|
+  #       return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
+  #     end
+  #   end
+  # end
 
   # def is_empty?(row, col)
   #   return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
@@ -86,10 +102,12 @@ class Piece < ActiveRecord::Base
     end
   end
 
-  # def valid_destination?(destination_row, destination_col)
-  #   return true if game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
+  # def invalid_destination?(destination_row, destination_col)
+  # # This has a piece in the destination, but not in between the pieces.
+  # return true if game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
   # end
 
-  # def vaild_input
+  # def invalid_input
+  #   puts "Invalid Input"
   # end
 end
