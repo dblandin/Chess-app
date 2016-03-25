@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   belongs_to :winner, class_name: 'User'
   has_many :pieces
 
-  #after_create :populate_board!
+  after_create :populate_board!
   #, :only => [:create]
 
   # def pieces 
@@ -29,7 +29,7 @@ class Game < ActiveRecord::Base
 
  # create white player pieces
       (0..7).each do |i|
-        Pawn.create(color: 'white', type: 'Pawn',  current_row_index: 1,
+        pieces.create(color: 'white', type: 'Pawn',  current_row_index: 1,
         current_column_index: i)
       end
     #end
@@ -39,26 +39,26 @@ class Game < ActiveRecord::Base
 
 
     #def add_rooks_white
-      Rook.create(color: 'white', type: 'Rook', current_row_index: 0, current_column_index: 0)
-      Rook.create(color: 'white', type: 'Rook', current_row_index: 0, current_column_index: 7)
+      pieces.create(color: 'white', type: 'Rook', current_row_index: 0, current_column_index: 0)
+      pieces.create(color: 'white', type: 'Rook', current_row_index: 0, current_column_index: 7)
     #end
   
     #def add_knights_white
-      Knight.create(color: 'white', type: 'Knight', current_row_index: 0, current_column_index: 1)
-      Knight.create(color: 'white', type: 'Knight', current_row_index: 0, current_column_index: 6)
+      pieces.create(color: 'white', type: 'Knight', current_row_index: 0, current_column_index: 1)
+      pieces.create(color: 'white', type: 'Knight', current_row_index: 0, current_column_index: 6)
     #end
     
     #def add_bishops_white
-      Bishop.create(color: 'white', type: 'Bishop', current_row_index: 0, current_column_index: 2)
-      Bishop.create(color: 'white', type: 'Bishop', current_row_index: 0, current_column_index: 5)
+      pieces.create(color: 'white', type: 'Bishop', current_row_index: 0, current_column_index: 2)
+      pieces.create(color: 'white', type: 'Bishop', current_row_index: 0, current_column_index: 5)
     #end
     
     #def add_queen_white
-      Queen.create(color: 'white', type: 'Queen', current_row_index: 0, current_column_index: 4)
+      pieces.create(color: 'white', type: 'Queen', current_row_index: 0, current_column_index: 4)
     #end
    
     #def add_king_white
-      King.create(color: 'white', type: 'King', current_row_index: 0, current_column_index: 3)
+      pieces.create(color: 'white', type: 'King', current_row_index: 0, current_column_index: 3)
     #end
  
 
@@ -72,42 +72,42 @@ class Game < ActiveRecord::Base
 
     #def add_pawns_black
       (0..7).each do |i|
-        Pawn.create(color: 'black', type: 'Pawn', current_row_index: 6,
+        pieces.create(color: 'black', type: 'Pawn', current_row_index: 6,
           current_column_index: i)
       end
     #end
 
        
     #def add_rooks_black
-      Rook.create(color: 'black', type: 'Rook', current_row_index: 7, current_column_index: 0)
-      Rook.create(color: 'black', type: 'Rook', current_row_index: 7, current_column_index: 7)
+      pieces.create(color: 'black', type: 'Rook', current_row_index: 7, current_column_index: 0)
+      pieces.create(color: 'black', type: 'Rook', current_row_index: 7, current_column_index: 7)
     #end
      
     #def add_knights_black
-      Knight.create(color: 'black', type: 'Knight', current_row_index: 7, current_column_index: 1)
-      Knight.create(color: 'black', type: 'Knight', current_row_index: 7, current_column_index: 6)
+      pieces.create(color: 'black', type: 'Knight', current_row_index: 7, current_column_index: 1)
+      pieces.create(color: 'black', type: 'Knight', current_row_index: 7, current_column_index: 6)
     #end
 
       
 
     #def add_bishops_black
-      Bishop.create(color: 'black', type: 'Bishop', current_row_index: 7, current_column_index: 2)
-      Bishop.create(color: 'black', type: 'Bishop', current_row_index: 7, current_column_index: 5)
+      pieces.create(color: 'black', type: 'Bishop', current_row_index: 7, current_column_index: 2)
+      pieces.create(color: 'black', type: 'Bishop', current_row_index: 7, current_column_index: 5)
     #end
 
     #def add_queen_black
-      Queen.create(color: 'black', type: 'Queen', current_row_index: 7, current_column_index: 4)
+      pieces.create(color: 'black', type: 'Queen', current_row_index: 7, current_column_index: 4)
     #end
 
 
     #def add_king_black
-      King.create(color: 'black', type: 'King', current_row_index: 7, current_column_index: 3)
+      pieces.create(color: 'black', type: 'King', current_row_index: 7, current_column_index: 3)
     #end
 
   end
 
 end
 
-#Game.populate_board!
+#game.populate_board!
 
 

@@ -5,9 +5,7 @@ RSpec.describe Game, type: :model do
   describe 'populate gameboard' do
     it 'should create 32 pieces' do 
         game = FactoryGirl.create(:game)
-        #expect(game.pieces.count).to eq 0
-        game.populate_board!
-        expect(game.pieces.count).to eq 32
+        expect(game.reload.pieces.count).to eq 32
 
     end
   end
