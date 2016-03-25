@@ -62,10 +62,7 @@ class Piece < ActiveRecord::Base
       current_row_position += delta_row
       current_col_position += delta_col
     end
-
-    spaces.each do |row, col|
-      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-    end
+    check_spaces(spaces)
   end
 
   def check_spaces(array)
