@@ -4,7 +4,7 @@ class Game < ActiveRecord::Base
   belongs_to :winner, class_name: 'User'
   has_many :pieces
 
-  after_create :populate_board!
+  #after_create :populate_board!
   #, :only => [:create]
 
   # def pieces 
