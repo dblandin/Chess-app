@@ -25,19 +25,22 @@ class Piece < ActiveRecord::Base
 
   def horizontal_move(destination_row, destination_col)
     delta_col = current_column_index < destination_col ? 1 : -1
-    spaces = []
-
     current_col_position = current_column_index + delta_col
 
+    spaces = []
     while current_col_position != destination_col do
       spaces << [destination_row, current_col_position]
       current_col_position += delta_col
     end
+    check_spaces(spaces)
+  end
 
-    spaces.each do |row, col|
+  def check_spaces(array)
+    array.each do |row, col|
       return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
     end
-  end
+  end 
+
 
   def vertical_move(destination_row, destination_col)
     delta_row = current_row_index < destination_row ? 1 : -1
