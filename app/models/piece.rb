@@ -55,51 +55,23 @@ class Piece < ActiveRecord::Base
     end
   end
 
-
-  # def vertical_move(destination_row)
-  #   if current_row_index < destination_row
-  #     (current_row_index + 1...destination_row).each do |row|
-  #       return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
-  #     end
-  #   else
-  #     (destination_row + 1...current_row_index).each do |row|
-  #       return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
-  #     end
-  #   end
-  # end
-
   def diagonal_move(destination_row, destination_col)
-    # Create an array of in between col (col + 1...destination_col)
+    delta_row = current_row_index < destination_row ? 1 : -1
+    delta_col = current_column_index < destination_col ? 1 : -1
 
-    # Loop through in between range of row, while incrementing row each time
-    if current_row_index < destination_row && current_column_index < destination_col
-        (current_row_index + 1...destination_row).each do |row|
-          (current_column_index + 1...destination_col).each do |col|
-        # Check to see if a piece exists in that space
-          return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-          end
-        end
-    elsif current_row_index > destination_row && current_column_index > destination_col
-        (destination_row + 1...current_row_index).each do |row|
-          (destination_col + 1...current_column_index).each do |col|
-        # Check to see if a piece exists in that space
-          return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-          end
-        end
-    elsif current_row_index > destination_row && current_column_index < destination_col
-      (destination_row + 1...current_row_index).each do |row|
-        (current_column_index + 1...destination_col).each do |col|
-        # Check to see if a piece exists in that space
-        return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-        end
-      end
-    elsif current_row_index < destination_row && current_column_index > destination_col
-      (current_row_index + 1...destination_row).each do |row|
-        (destination_col + 1...current_column_index).each do |col|
-        # Check to see if a piece exists in that space
-        return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-        end
-      end 
+    spaces = []
+
+    current_row_position = current_row_index + delta_row
+    current_col_position = current_column_index + delta_col
+
+    while current_row_position != destination_row do
+      spaces << [current_row_position, current_col_position]
+      current_row_position += delta_row
+      current_col_position += delta_col
+    end
+
+    spaces.each do |row, col|
+      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
     end
   end
 
