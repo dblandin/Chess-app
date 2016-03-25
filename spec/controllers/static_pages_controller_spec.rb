@@ -16,4 +16,7 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to render_template(file: "#{Rails.root}/public/404.html")
     end
   end
+
+  # TODO: implement test for root/wrongURL
+  # Current test exists for root/static_pages/wrongURL
 end

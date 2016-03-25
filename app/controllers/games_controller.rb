@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    @games = Game.where(available: true, limit: 10)
   end
 
   def create
