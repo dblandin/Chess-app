@@ -9,3 +9,12 @@ FactoryGirl.define do
   end
 
 end
+# Piece class
+# FactoryGirl.define do
+#   factory :piece do
+#     type nil
+#     color nil
+#     current_row_index 1
+#     current_column_index 1
+#   end
+# end
