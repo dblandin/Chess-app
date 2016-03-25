@@ -23,7 +23,6 @@ Metrics/ClassLength:
 Metrics/ModuleLength:
   Max: 200
 
-# rubocop:disable Metrics/AbcSize
 # Increases "Assignment Branch Condition size" warning from 15 to 30
 Metrics/AbcSize:
   Max: 30
