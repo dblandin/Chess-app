@@ -4,7 +4,7 @@ class Piece < ActiveRecord::Base
 
   def obstructed?(destination_row, destination_col)
     return horizontal_move(destination_row, destination_col) if horizontal?(destination_row, destination_col)
-    return vertical_move(destination_row) if vertical?(destination_row, destination_col)
+    return vertical_move(destination_row, destination_col) if vertical?(destination_row, destination_col)
     return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
   end
 
@@ -39,33 +39,34 @@ class Piece < ActiveRecord::Base
     end
   end
 
-  # def horizontal_move(destination_col)
-  #   if current_column_index < destination_col
-  #     (current_column_index + 1...destination_col).each do |col|
-  #       return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
+  def vertical_move(destination_row, destination_col)
+    delta_row = current_row_index < destination_row ? 1 : -1
+    spaces = []
+
+    current_row_position = current_row_index + delta_row
+
+    while current_row_position != destination_row do
+      spaces << [current_row_position, destination_col]
+      current_row_position += delta_row
+    end
+
+    spaces.each do |row, col|
+      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+    end
+  end
+
+
+  # def vertical_move(destination_row)
+  #   if current_row_index < destination_row
+  #     (current_row_index + 1...destination_row).each do |row|
+  #       return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
   #     end
   #   else
-  #     (destination_col + 1...current_column_index).each do |col|
-  #       return true if game.pieces.where(current_row_index: current_row_index, current_column_index: col).exists?
+  #     (destination_row + 1...current_row_index).each do |row|
+  #       return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
   #     end
   #   end
   # end
-
-  # def is_empty?(row, col)
-  #   return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-  # end
-
-  def vertical_move(destination_row)
-    if current_row_index < destination_row
-      (current_row_index + 1...destination_row).each do |row|
-        return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
-      end
-    else
-      (destination_row + 1...current_row_index).each do |row|
-        return true if game.pieces.where(current_row_index: row, current_column_index: current_column_index).exists?
-      end
-    end
-  end
 
   def diagonal_move(destination_row, destination_col)
     # Create an array of in between col (col + 1...destination_col)
