@@ -3,7 +3,7 @@ App Layout Template
 ==============================================*/
 
 #mainContentContainer {
-  background: $green;
+  background: $red;
   position: relative;
   right: 0px;
   height: 100%;
@@ -11,7 +11,8 @@ App Layout Template
 }
 
 body, html {
-  min-height: 100vh;
+  min-height: 0;
+  height: 100vh;
   background-color: $dark-gray;
 }
 
