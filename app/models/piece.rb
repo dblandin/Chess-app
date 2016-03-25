@@ -2,12 +2,14 @@ class Piece < ActiveRecord::Base
   belongs_to :game
   belongs_to :user, class_name: 'User'
 
-  # determine if we should march forward of backwards
-  # actually march forwards and backwards to build an array of spaces
-  # determine if a piece is in the square from the position.
+  def obstructed?(destination_row, destination_col)
+    return horizontal_move(destination_col) if horizontal?(destination_row, destination_col)
+    return vertical_move(destination_row) if vertical?(destination_row, destination_col)
+    return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
+  end
 
   def horizontal?(destination_row, destination_col)
-    # is the row the same, but the col different?
+    # given the destination row and destination col is the row the same, but the col different comparing with the current_row_index and current_column_index?
     (current_row_index == destination_row) && (current_column_index != destination_col)
   end
 
@@ -18,15 +20,7 @@ class Piece < ActiveRecord::Base
 
   def diaganol?(destination_row, destination_col)
     # is the row and column different?
-    row_diff = current_row_index - destination_row
-    col_diff = current_column_index - destination_col
-    row_diff == col_diff
-  end
-
-  def obstructed?(destination_row, destination_col)
-    return horizontal_move(destination_col) if horizontal?(destination_row, destination_col)
-    return vertical_move(destination_row) if vertical?(destination_row, destination_col)
-    return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
+    ((current_row_index - destination_row).abs) == ((current_column_index - destination_col).abs)
   end
 
   def horizontal_move(destination_col)
@@ -41,6 +35,10 @@ class Piece < ActiveRecord::Base
     end
   end
 
+  # def is_empty?(row, col)
+  #   return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+  # end
+
   def vertical_move(destination_row)
     if current_row_index < destination_row
       (current_row_index + 1...destination_row).each do |row|
@@ -54,6 +52,38 @@ class Piece < ActiveRecord::Base
   end
 
   def diagonal_move(destination_row, destination_col)
+    # Create an array of in between col (col + 1...destination_col)
+
+    # Loop through in between range of row, while incrementing row each time
+    if current_row_index < destination_row && current_column_index < destination_col
+        (current_row_index + 1...destination_row).each do |row|
+          (current_column_index + 1...destination_col).each do |col|
+        # Check to see if a piece exists in that space
+          return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+          end
+        end
+    elsif current_row_index > destination_row && current_column_index > destination_col
+        (destination_row + 1...current_row_index).each do |row|
+          (destination_col + 1...current_column_index).each do |col|
+        # Check to see if a piece exists in that space
+          return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+          end
+        end
+    elsif current_row_index > destination_row && current_column_index < destination_col
+      (destination_row + 1...current_row_index).each do |row|
+        (current_column_index + 1...destination_col).each do |col|
+        # Check to see if a piece exists in that space
+        return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+        end
+      end
+    elsif current_row_index < destination_row && current_column_index > destination_col
+      (current_row_index + 1...destination_row).each do |row|
+        (destination_col + 1...current_column_index).each do |col|
+        # Check to see if a piece exists in that space
+        return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+        end
+      end 
+    end
   end
 
   # def valid_destination?(destination_row, destination_col)
