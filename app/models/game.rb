@@ -5,8 +5,8 @@ class Game < ActiveRecord::Base
   has_many :pieces
 
   after_create :populate_board!
-# rubocop:disable Metrics/AbcSize
-  def populate_board!
+
+  def populate_board! # rubocop:disable Metrics/AbcSize
     (0..7).each do |i|
       pieces.create(color: 'white', type: 'Pawn', current_row_index: 1,
                     current_column_index: i)
@@ -44,4 +44,3 @@ class Game < ActiveRecord::Base
     pieces.create(color: 'black', type: 'King', current_row_index: 7, current_column_index: 3)
   end
 end
-# rubocop:disable Metrics/AbcSize
