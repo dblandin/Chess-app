@@ -35,13 +35,6 @@ class Piece < ActiveRecord::Base
     check_spaces(spaces)
   end
 
-  def check_spaces(array)
-    array.each do |row, col|
-      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-    end
-  end 
-
-
   def vertical_move(destination_row, destination_col)
     delta_row = current_row_index < destination_row ? 1 : -1
     spaces = []
@@ -52,10 +45,7 @@ class Piece < ActiveRecord::Base
       spaces << [current_row_position, destination_col]
       current_row_position += delta_row
     end
-
-    spaces.each do |row, col|
-      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-    end
+    check_spaces(spaces)
   end
 
   def diagonal_move(destination_row, destination_col)
@@ -77,6 +67,13 @@ class Piece < ActiveRecord::Base
       return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
     end
   end
+
+  def check_spaces(array)
+    array.each do |row, col|
+      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
+    end
+  end 
+
 
   # def invalid_destination?(destination_row, destination_col)
   # # This has a piece in the destination, but not in between the pieces.
