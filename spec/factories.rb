@@ -1,7 +1,11 @@
+
+# Game class
 FactoryGirl.define do
   factory :game do
-    game_id "id"
-    current_row_index "nil"
-    current_column_index "nil"
+    name "New Game"
+    black_player_id 1
+    white_player_id 1 
+    current_player_turn_id nil
   end
+
 end
