@@ -17,6 +17,9 @@ deploy:
     repo: TeamAlphaChess/Chess-app
 
 
-    addons: 
-      code_climate: 
-        repo_token: 62xBHrZMnWv6dfTcMAiq
+# addons: 
+#       code_climate: 
+#         repo_token: 62xBHrZMnWv6dfTcMAiq    
+addons:
+    code_climate:
+        repo_token: a291f217625b6d218c3d50c80d21f5b4cb62dafd0eb1765e0bb4c49cf77c1d18
