@@ -45,7 +45,6 @@ gem 'jbuilder', '~> 1.2'
 # Rails forms made easy
 gem 'simple_form'
 
-
 # Static pages controller plugin
 gem 'high_voltage', '~> 2.4.0'
 
