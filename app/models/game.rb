@@ -10,8 +10,7 @@ class Game < ActiveRecord::Base
     white_player_open = white_player_id.nil?
     black_player_open = black_player_id.nil?
 
-    self.available = if white_player_open || black_player_open
-                     end
+    self.available = white_player_open || black_player_open
 
     return 'delete this game' if white_player_open && black_player_open
     # TODO: implement delete game in sepearate method
