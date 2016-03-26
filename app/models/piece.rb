@@ -3,9 +3,11 @@ class Piece < ActiveRecord::Base
   belongs_to :user, class_name: 'User'
 
   def obstructed?(destination_row, destination_col)
-    return horizontal_move(destination_row, destination_col) if horizontal?(destination_row, destination_col)
-    return vertical_move(destination_row, destination_col) if vertical?(destination_row, destination_col)
-    return diagonal_move(destination_row, destination_col) if diaganol?(destination_row, destination_col)
+    invalid_input?(destination_row, destination_col) ||
+      invalid_horizontal_move?(destination_row, destination_col) ||
+      invalid_vertical_move?(destination_row, destination_col) ||
+      invalid_diagonal_move?(destination_row, destination_col) ||
+      invalid_destination?(destination_row, destination_col)
   end
 
   def horizontal?(destination_row, destination_col)
@@ -18,12 +20,13 @@ class Piece < ActiveRecord::Base
     (current_column_index == destination_col) && (current_row_index != destination_row)
   end
 
-  def diaganol?(destination_row, destination_col)
+  def diagonal?(destination_row, destination_col)
     # is the row and column different?
     (current_row_index - destination_row).abs == (current_column_index - destination_col).abs
   end
 
-  def horizontal_move(destination_row, destination_col)
+  def invalid_horizontal_move?(destination_row, destination_col)
+    return false unless horizontal?(destination_row, destination_col)
     delta_col = current_column_index < destination_col ? 1 : -1
     current_col_position = current_column_index + delta_col
     spaces = []
@@ -32,10 +35,11 @@ class Piece < ActiveRecord::Base
       spaces << [destination_row, current_col_position]
       current_col_position += delta_col
     end
-    check_spaces(spaces)
+    piece_present?(spaces)
   end
 
-  def vertical_move(destination_row, destination_col)
+  def invalid_vertical_move?(destination_row, destination_col)
+    return false unless vertical?(destination_row, destination_col)
     delta_row = current_row_index < destination_row ? 1 : -1
     current_row_position = current_row_index + delta_row
     spaces = []
@@ -44,10 +48,11 @@ class Piece < ActiveRecord::Base
       spaces << [current_row_position, destination_col]
       current_row_position += delta_row
     end
-    check_spaces(spaces)
+    piece_present?(spaces)
   end
 
-  def diagonal_move(destination_row, destination_col)
+  def invalid_diagonal_move?(destination_row, destination_col)
+    return false unless diagonal?(destination_row, destination_col)
     delta_row = current_row_index < destination_row ? 1 : -1
     delta_col = current_column_index < destination_col ? 1 : -1
     spaces = []
@@ -60,17 +65,22 @@ class Piece < ActiveRecord::Base
       current_row_position += delta_row
       current_col_position += delta_col
     end
-    check_spaces(spaces)
+    piece_present?(spaces)
   end
 
-  def check_spaces(array)
-    array.each do |row, col|
-      return true if game.pieces.where(current_row_index: row, current_column_index: col).exists?
-    end
+  def piece_present?(array)
+    return false if array.empty?
+    array.map do |row, col|
+      game.pieces.where(current_row_index: row, current_column_index: col)
+    end.inject(&:or).count > 0
   end
 
-  # def invalid_destination?(destination_row, destination_col)
-  # # This has a piece in the destination, but not in between the pieces.
-  # return true if game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
-  # end
+  def invalid_input?(destination_row, destination_col)
+    destination_row > 7 || destination_col > 7
+  end
+
+  def invalid_destination?(destination_row, destination_col)
+    # # This has a piece in the destination, but not in between the pieces.
+    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
+  end
 end
