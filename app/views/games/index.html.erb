@@ -4,7 +4,8 @@
 <% @games.each do |game| %>
   <% if game.open_seat? %>
     <p>
-      <%= link_to game.name, game_path(game) %>
+      <%= link_to game.name, game_path(game) %> -
+      <%= link_to 'Join Game', '#' %>
     </p>
   <% end %>
 <% end %>
