@@ -8,13 +8,13 @@ RSpec.describe Game, type: :model do
       expect(game.available).to eq false
     end
 
-    it 'should have an open seat available with white_player current' do
+    it 'should have an open seat available with white_player present' do
       game = Game.create(name: 'test', white_player_id: 1)
       game.open_seat
       expect(game.available).to eq true
     end
 
-    it 'should have an open seat available with white_player current' do
+    it 'should have an open seat available with white_player present' do
       game = Game.create(name: 'test', black_player_id: 1)
       expect(game.available).to eq true
     end
