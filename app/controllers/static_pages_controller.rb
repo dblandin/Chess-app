@@ -1,7 +1,6 @@
 # Controller for static html content pages
 class StaticPagesController < ApplicationController
   include HighVoltage::StaticPage
-
   layout :layout_for_page
 
   def show

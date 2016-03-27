@@ -1,0 +1,44 @@
+.chess-light-square {
+  background-color: $white;
+  border: none;
+}
+
+.chess-dark-square {
+  background-color: $light-gray;
+  border: none;
+}
+
+.chessgame-container {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 0 13px;
+}
+
+.game-bar {
+  height: 23px;
+  width: 100%;
+  background-color: white;
+  max-width: 132px;
+  box-shadow: $element-shadow;
+}
+
+.chessboard {
+  width: 100%;
+  max-width: 132px;
+  margin: 10px auto;
+  background: $white;
+  box-shadow: $element-shadow;
+}
+
+.chessboard-rotate {
+  transform: rotate(180deg);
+}

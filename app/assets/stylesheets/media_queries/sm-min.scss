@@ -1,0 +1,38 @@
+@media (min-width: $screen-sm-min){
+
+  /* =============================================
+  App Layout Template
+  ==============================================*/
+
+  .navbar {
+    height: $navbar-height-sm;
+  }
+
+  .footer {
+    height: $footer-height-sm;
+  }
+
+  .main-container {
+    height: calc(100vh - ( #{$footer-height-sm} + #{$navbar-height-sm} ) );
+  }
+
+  .full-logo {
+    width: 280px;
+  }
+
+  .navbar-avatar {
+    width: 40px;
+    top: 15px;
+  }
+
+  .navbar-avatar-container {
+    height: $navbar-height-sm;
+    width: 70px;
+  }
+
+  .main-sidenav {
+    width: 250px;
+  }
+
+
+}

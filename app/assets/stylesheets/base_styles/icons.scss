@@ -1,0 +1,43 @@
+/* ====================================
+Ionicons
+======================================*/
+
+.notification {
+  @extend .ion-ios-bell;
+}
+
+.search {
+  @extend .ion-ios-search-strong;
+}
+
+.navicon {
+  @extend .ion-navicon;
+}
+
+.new {
+  @extend .ion-plus;
+}
+
+.close {
+  @extend .ion-ios-close-empty;
+}
+
+.browsefiles {
+  @extend .ion-ios-folder-outline;
+}
+
+.valid {
+  @extend .ion-ios-checkmark-empty;
+}
+
+.avatar {
+  background: url('icons/avatar.svg') no-repeat;
+}
+
+.contact {
+  @extend .ion-ios-email;
+}
+
+.logout {
+  @extend .ion-share;
+}

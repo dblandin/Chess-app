@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
     sequence :email do |n|
       "dummyEmail#{n}@gmail.com"
@@ -21,5 +22,6 @@ FactoryGirl.define do
     current_column_index nil
     color nil
     captured nil
+
   end
 end

@@ -9,7 +9,41 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
+
  */
+
+ /* =============================================
+Be very careful of the order here.
+ ==============================================*/
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* Things like montserrat @font-face imports. */
+@import "asset-scss-imports/aaa-index";
+
+/* Ionicons is a gem installed icon font. */
+@import "ionicons";
+
+/* All Sass variables go in here plus base classes */
+@import "base_styles/aaa-index";
+
+/* Styling for div containers */
+@import "layouts/aaa-index";
+
+/* Styling for individual items like a nav, footer, form, etc */
+@import "modules/aaa-index";
+
+@import "states/aaa-index";
+/* New imports go here, before @import "test.scss" and media queries */
+
+/* If you're working on a feature and don't want to focus
+   organizing your scss code, feel free to add code in test.scss.
+   However, before committing or when the feature is complete,
+   remove your code from this file and organize it in the
+   appropriate files. When you do a pull request test.scss
+   should be empty */
+@import "test.scss";
+
+/* Media Queries */
+@import "media_queries/aaa-index";
