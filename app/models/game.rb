@@ -3,11 +3,11 @@ class Game < ActiveRecord::Base
   belongs_to :black_player, class_name: 'User'
   belongs_to :winner, class_name: 'User'
   has_many :pieces
+  after_create :populate_board!
 
   def open_seat?
     white_player_id.nil? || black_player_id.nil?
-
-  after_create :populate_board!
+  end
 
   def populate_board! # rubocop:disable Metrics/AbcSize
     (0..7).each do |i|
@@ -45,7 +45,5 @@ class Game < ActiveRecord::Base
     pieces.create(color: 'black', type: 'Queen', current_row_index: 7, current_column_index: 4)
 
     pieces.create(color: 'black', type: 'King', current_row_index: 7, current_column_index: 3)
-
   end
-
 end
