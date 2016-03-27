@@ -1,6 +1,4 @@
 class GamesController < ApplicationController
-  #before_action :authenticate_user!, only: [:create]
-
   def new
     @game = Game.new
   end
@@ -11,7 +9,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
-    #@game.update_attribute(:black_player_id, current_user.id)
+    @game.update_attribute(game_params)
     redirect_to root_path
   end
 
