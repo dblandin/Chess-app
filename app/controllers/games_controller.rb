@@ -4,7 +4,8 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.where(available: true, limit: 10)
+    # Queries 10 games
+    @games = Game.open_seats
   end
 
   def create
