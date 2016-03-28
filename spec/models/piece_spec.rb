@@ -111,5 +111,13 @@ RSpec.describe Piece, type: :model do
       # it returns true because a piece should be able to take an opposing piece's destination.
     end
 
+    it 'returns false for same color piece in destination' do
+      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
+      piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
+      FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'black')
+
+      expect(piece1.move_to?(2, 2)).to eq false
+      # it returns false and raises an error because a piece should not be able to move to a destination where another same color piece exists.
+    end
   end
 end
