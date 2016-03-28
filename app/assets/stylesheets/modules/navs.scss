@@ -54,8 +54,5 @@ App Layout Template
   box-shadow: $element-shadow;
   position: absolute;
   right: 0;
-}
-
-#mainSideNav {
-  opacity: 0;
+  display: none;
 }

@@ -10,6 +10,7 @@ class GamesController < ApplicationController
 
   def create
     @game = Game.create(game_params)
+    @game.update_attribute(game_params)
     redirect_to root_path
   end
 

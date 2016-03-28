@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Game, type: :model do
   describe 'status' do
@@ -25,6 +26,13 @@ RSpec.describe Game, type: :model do
 
       # TODO: implment test for deleting game
       expect(deleted).to eq('delete this game')
+    end
+  end
+
+  describe 'populate gameboard' do
+    it 'should create 32 pieces' do
+      game = FactoryGirl.create(:game)
+      expect(game.reload.pieces.count).to eq 32
     end
   end
 end
