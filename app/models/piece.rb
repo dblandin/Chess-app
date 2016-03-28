@@ -83,4 +83,20 @@ class Piece < ActiveRecord::Base
     # # This has a piece in the destination, but not in between the pieces.
     game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
   end
+
+  def move_to!(destination_row, destination_col)
+    # logic here
+    #   First, check to see if there is a piece in the location it’s moving to.
+    #   Second, if there is a piece there, and it’s the opposing color, remove the piece from the board. This can be done a few different ways.
+
+    #   You could have a “status” flag on the piece that will be one of “onboard” or “captured”.
+    #   You could set the piece’s x/y coordinates to nil
+    #   You could delete the item from the database.
+    #   Each solution has pros/cons. It's up to you smile!
+
+    #   Third, if the piece is there and it’s the same color the move should fail - it should either raise an error message or do nothing.
+
+    #   Finally, it should call update_attributes on the piece and change the piece’s x/y position (move the piece).
+  end
+
 end
