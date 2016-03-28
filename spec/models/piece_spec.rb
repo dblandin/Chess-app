@@ -93,13 +93,23 @@ RSpec.describe Piece, type: :model do
   end
 
   describe 'move_to!' do
-    it 'returns true for existing piece in destination' do
+    it 'returns false for existing piece in destination' do
       game = FactoryGirl.create(:game) # Would do this using FactoryGirl
       piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1)
       FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2)
 
-      expect(piece1.move_to?(2, 2)).to eq true
+      expect(piece1.move_to?(2, 2)).to eq false
       # it raises an error because there is a piece in the destination.
     end
+
+    it 'returns true for opposing color piece in destination' do
+      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
+      piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
+      FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'white')
+
+      expect(piece1.move_to?(2, 2)).to eq true
+      # it returns true because a piece should be able to take an opposing piece's destination.
+    end
+
   end
 end
