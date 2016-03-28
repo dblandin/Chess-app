@@ -4,11 +4,15 @@ class GamesController < ApplicationController
   end
 
   def index
-    # Queries 10 games
+    # Queries 20 games
     @games = Game.open_seats
   end
 
   def create
+    # Note that the creator of the game automatically
+    # becomes the black_player. Due to some issues in
+    # querying, for games index, the model only checks
+    # for games where the white_player_id is nil.
     @game = Game.create(game_params)
     @game.update_attribute(game_params)
     redirect_to root_path

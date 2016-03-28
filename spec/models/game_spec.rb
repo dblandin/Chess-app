@@ -4,28 +4,29 @@ require 'spec_helper'
 RSpec.describe Game, type: :model do
   describe 'status' do
     it 'should not have an open seat available if both players present' do
-      game = Game.create(name: 'test', white_player_id: 1, black_player_id: 2)
-      game.open_seat
-      expect(game.available).to eq false
+      FactoryGirl.create(:game)
+      open_games = Game.list_available_games
+      expect(open_games.length).to eq(0)
     end
 
-    it 'should have an open seat available with white_player present' do
-      game = Game.create(name: 'test', white_player_id: 1)
-      game.open_seat
-      expect(game.available).to eq true
+    it 'should query a maximum of 20 games' do
+      FactoryGirl.create_list(:game, 21, white_player_id: nil)
+      open_games = Game.list_available_games
+      expect(open_games.length).to eq(20)
     end
 
-    it 'should have an open seat available with white_player present' do
-      game = Game.create(name: 'test', black_player_id: 1)
-      expect(game.available).to eq true
+    it 'should return 0 out of 2 created games if 1 game is full, while only white is present in other game' do
+      FactoryGirl.create(:game, black_player_id: nil)
+      FactoryGirl.create(:game)
+      open_games = Game.list_available_games
+      expect(open_games.length).to eq(0)
     end
 
-    it 'should destroy the game if no players present' do
-      game = Game.create(name: 'test')
-      deleted = game.open_seat
-
-      # TODO: implment test for deleting game
-      expect(deleted).to eq('delete this game')
+    it 'should return 1 out of 2 created games if 1 game is full, while only black is present in other game' do
+      FactoryGirl.create(:game, white_player_id: nil)
+      FactoryGirl.create(:game)
+      open_games = Game.list_available_games
+      expect(open_games.length).to eq(1)
     end
   end
 
