@@ -87,6 +87,8 @@ class Piece < ActiveRecord::Base
   def move_to!(destination_row, destination_col)
     # logic here
     #   First, check to see if there is a piece in the location it’s moving to.
+    invalid_destination?(destination_row, destination_col)
+
     #   Second, if there is a piece there, and it’s the opposing color, remove the piece from the board. This can be done a few different ways.
 
     #   You could have a “status” flag on the piece that will be one of “onboard” or “captured”.
