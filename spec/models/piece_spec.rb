@@ -98,7 +98,7 @@ RSpec.describe Piece, type: :model do
       piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1)
       FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2)
 
-      expect(piece1.move_to?(2, 2)).to eq false
+      expect(piece1.move_to!(2, 2)).to eq false
       # it raises an error because there is a piece in the destination.
     end
 
@@ -107,7 +107,7 @@ RSpec.describe Piece, type: :model do
       piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
       FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'white')
 
-      expect(piece1.move_to?(2, 2)).to eq true
+      expect(piece1.move_to!(2, 2)).to eq true
       # it returns true because a piece should be able to take an opposing piece's destination.
     end
 
@@ -116,8 +116,21 @@ RSpec.describe Piece, type: :model do
       piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
       FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'black')
 
-      expect(piece1.move_to?(2, 2)).to eq false
+      expect(piece1.move_to!(2, 2)).to eq false
       # it returns false and raises an error because a piece should not be able to move to a destination where another same color piece exists.
+    end
+
+    it 'should call update_attributes on the piece when move is allowed' do
+      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
+      piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
+      FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'white')
+      piece1.move_to!(2, 2)
+      piece1.reload
+
+      expect(piece1.current_column_index).to eq(2)
+      expect(piece1.current_row_index).to eq(2)
+
+      # it should update the piece's current_column_index and current_row_index values in the database.
     end
   end
 end
