@@ -87,8 +87,25 @@ class Piece < ActiveRecord::Base
   def move_to!(destination_row, destination_col)
     # logic here
     #   First, check to see if there is a piece in the location it’s moving to.
-    invalid_destination?(destination_row, destination_col)
-
+    if invalid_destination?(destination_row, destination_col)
+      #If the piece here is of Opposite color and not obstructed, remove the piece else the move should fail
+      if self.color != game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).color && obstructed?(destination_row, destination_col) == false
+        # Remove the old piece
+        game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).update_attributes(current_row_index: nil, current_column_index: nil)
+        # Place piece in the removed pieces location
+        self.update_attributes(current_row_index: destination_row, current_column_index: destination_col)
+      else
+        # Move should fail
+      end
+    else
+      # There is not a piece in the spot so check the obstructions next
+      if obstructed?(destination_row, destination_col) == false
+        # move the piece to the location
+        self.update_attributes(current_row_index: destination_row, current_column_index: destination_col)
+      else
+        # Move should fail
+      end
+    end
     #   Second, if there is a piece there, and it’s the opposing color, remove the piece from the board. This can be done a few different ways.
 
     #   You could have a “status” flag on the piece that will be one of “onboard” or “captured”.
@@ -100,5 +117,4 @@ class Piece < ActiveRecord::Base
 
     #   Finally, it should call update_attributes on the piece and change the piece’s x/y position (move the piece).
   end
-
 end
