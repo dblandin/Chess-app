@@ -1,3 +1,7 @@
+/* ====================================
+Chessboard
+======================================*/
+
 .chess-light-square {
   background-color: $white;
   border: none;
@@ -39,6 +43,71 @@
   box-shadow: $element-shadow;
 }
 
+.chessboard tr {
+  max-height: 58px;
+}
+
+.chessboard tr td {
+  max-width: 12.5%;
+}
+
 .chessboard-rotate {
   transform: rotate(180deg);
+}
+
+/* ====================================
+Chesspieces
+======================================*/
+
+.chess-piece {
+  width: 100%;
+  height: 100%;
+}
+
+#bishopBlack {
+  background: url('icons/chesspieces/bishop-black.svg') no-repeat;
+}
+
+#kingBlack {
+  background: url('icons/chesspieces/king-black.svg') no-repeat;
+}
+
+#knightBlack {
+  background: url('icons/chesspieces/knight-black.svg') no-repeat;
+}
+
+#pawnBlack {
+  background: url('icons/chesspieces/pawn-black.svg') no-repeat;
+}
+
+#queenBlack {
+  background: url('icons/chesspieces/queen-black.svg') no-repeat;
+}
+
+#rookBlack {
+  background: url('icons/chesspieces/rook-black.svg') no-repeat;
+}
+
+#bishopWhite {
+  background: url('icons/chesspieces/bishop-white.svg') no-repeat;
+}
+
+#kingWhite {
+  background: url('icons/chesspieces/king-white.svg') no-repeat;
+}
+
+#knightWhite {
+  background: url('icons/chesspieces/knight-white.svg') no-repeat;
+}
+
+#pawnWhite {
+  background: url('icons/chesspieces/pawn-white.svg') no-repeat;
+}
+
+#queenWhite {
+  background: url('icons/chesspieces/queen-white.svg') no-repeat;
+}
+
+#rookWhite {
+  background: url('icons/chesspieces/rook-white.svg') no-repeat;
 }
