@@ -91,7 +91,7 @@ class Piece < ActiveRecord::Base
       #If the piece here is of Opposite color and not obstructed, remove the piece else the move should fail
       if self.color != game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).color && obstructed?(destination_row, destination_col) == false
         # Remove the old piece
-        game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).update_attributes(current_row_index: nil, current_column_index: nil)
+        game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).update_attributes(current_row_index: nil, current_column_index: nil, captured: true)
         # Place piece in the removed pieces location
         self.update_attributes(current_row_index: destination_row, current_column_index: destination_col)
       else
