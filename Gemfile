@@ -39,6 +39,9 @@ gem 'codeclimate-test-reporter', group: :test, require: nil
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# UI extensions to jQuery
+gem 'jquery-ui-rails'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 

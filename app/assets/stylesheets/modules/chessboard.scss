@@ -12,6 +12,10 @@ Chessboard
   border: none;
 }
 
+#chessSquareAnimate {
+
+}
+
 .chessgame-container {
   display: flex;
   flex-flow: column nowrap;
@@ -44,15 +48,14 @@ Chessboard
 }
 
 .chessboard tr {
-  max-height: 58px;
+  height: 12.5%;
+  width: 100%;
+
 }
 
 .chessboard tr td {
-  max-width: 12.5%;
-}
-
-.chessboard-rotate {
-  transform: rotate(180deg);
+  width: 12.5%;
+  height: 12.5%;
 }
 
 /* ====================================
@@ -61,7 +64,12 @@ Chesspieces
 
 .chess-piece {
   width: 100%;
-  height: 100%;
+  height: 98%;
+  top: 0;
+  left: 0;
+  position: relative;
+  margin: auto;
+  z-index: 1;
 }
 
 #bishopBlack {

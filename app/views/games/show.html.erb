@@ -9,11 +9,8 @@
 <div class="chessgame-container">
   <div class="game-bar">
   </div>
-<% if current_user == @game.black_player_id %>
-  <table class="chessboard chessboard-rotate" id="chessBoard">
-<% else %>
+
   <table class="chessboard" id="chessBoard">
-<% end %>
     <tbody>
       <tr>
         <td class="chess-light-square" id="row0col0">
