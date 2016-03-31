@@ -7,7 +7,7 @@ class Piece < ActiveRecord::Base
       invalid_horizontal_move?(destination_row, destination_col) ||
       invalid_vertical_move?(destination_row, destination_col) ||
       invalid_diagonal_move?(destination_row, destination_col) ||
-      invalid_destination?(destination_row, destination_col)
+      spot_taken?(destination_row, destination_col)
   end
 
   def horizontal?(destination_row, destination_col)
@@ -79,19 +79,20 @@ class Piece < ActiveRecord::Base
     destination_row > 7 || destination_col > 7
   end
 
-  def invalid_destination?(destination_row, destination_col)
+  def spot_taken?(destination_row, destination_col)
     # # This has a piece in the destination, but not in between the pieces.
-    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
+    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).count > 0
   end
 
   def move_to!(destination_row, destination_col)
     # logic here
     #   First, check to see if there is a piece in the location it’s moving to.
-    if invalid_destination?(destination_row, destination_col)
+    if spot_taken?(destination_row, destination_col)
+      blocker_piece = game.pieces.find_by_current_row_index_and_current_column_index(destination_row, destination_col)
       #If the piece here is of Opposite color and not obstructed, remove the piece else the move should fail
-      if self.color != game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).color && obstructed?(destination_row, destination_col) == false
+      if self.color != blocker_piece.color && obstructed?(destination_row, destination_col) == false
         # Remove the old piece
-        game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).update_attributes(current_row_index: nil, current_column_index: nil, captured: true)
+        blocker_piece.update_attributes(current_row_index: nil, current_column_index: nil, captured: true)
         # Place piece in the removed pieces location
         self.update_attributes(current_row_index: destination_row, current_column_index: destination_col)
       else
