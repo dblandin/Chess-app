@@ -5,6 +5,7 @@ $(document).ready(function() {
   var initialSquare;
   var initialSquareColorBegin;
   var initialSelectedPiece;
+  var pageId = $('#railsVariables').data('pageid');
 
   $('.chess-dark-square, .chess-light-square').on('click', function() {
     if (isPieceSelected === false) {
@@ -33,10 +34,11 @@ $(document).ready(function() {
           selected_piece: initialSelectedPiece.attr('id'),
         }
 
+
         // Move piece ajax request begin
         $.ajax({
           method: 'patch',
-          url: '/games/1',
+          url: '/games/' + pageId,
           data: params,
           success: function(data) {
             if (data.validMove === true) {

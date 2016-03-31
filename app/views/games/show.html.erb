@@ -1,6 +1,8 @@
 <!-- Passes the current page title to application.html.erb -->
 <%= content_for :page_title, @game.name %>
 
+<!-- Passing data to javascript from rails -->
+<div data-pageid="<%= @game.id %>", id="railsVariables"></div>
 <!-- <h1><%= @game.name %></h1>
      <h2><%= @game.inspect %></h2> -->
 

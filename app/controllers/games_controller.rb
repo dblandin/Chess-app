@@ -20,6 +20,7 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+
     if request.xhr?
       # e.g. pawnBlack or kingWhite, etc
       selected_piece = request['selected_piece']
@@ -35,7 +36,7 @@ class GamesController < ApplicationController
       # Create backend logic in models and call them here
       # with the incoming data as arguments
 
-      # data to be returned. Will contain the return of 
+      # data to be returned. Will contain the return of
       # the model logic.
       # Piece_captured is so javascript can update the
       # captured pieces board.
