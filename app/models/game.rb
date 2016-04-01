@@ -10,7 +10,7 @@ class Game < ActiveRecord::Base
   end
 
   def set_captured_to_false
-    self.pieces.each do |piece|
+    pieces.each do |piece|
       piece.update_attributes(captured: false)
     end
   end
