@@ -108,15 +108,6 @@ RSpec.describe Piece, type: :model do
       expect(piece1.obstructed?(100, 300)).to eq true
       # it raises an error because there is an invalid input. There is no row: 100, col: 300
     end
-
-    it 'returns true for invalid destination' do
-      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
-      piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1)
-      FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2)
-
-      expect(piece1.obstructed?(2, 2)).to eq true
-      # it raises an error because there is a piece in the destination.
-    end
   end
 
   describe 'move_to!' do
@@ -127,6 +118,15 @@ RSpec.describe Piece, type: :model do
       piece.move_to!(2,0)
       expect(piece.current_row_index).to eq 2
       expect(piece.current_column_index).to eq 0
+    end
+
+    it 'returns true for spot taken' do
+      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
+      piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
+      #FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2)
+
+      expect(piece.spot_taken?(1, 1)).to eq true
+      # it raises an error because there is a piece in the destination.
     end
 
     it 'moves the piece if the spot is taken with an opposite color' do
@@ -147,23 +147,7 @@ RSpec.describe Piece, type: :model do
     #
     # end
 
-    # it 'returns true for existing piece in destination' do
-    #   game = FactoryGirl.create(:game) # Would do this using FactoryGirl
-    #   piece1 = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
-    #
-    #   expect(piece1.spot_taken?(0, 1)).to eq true
-    #   # it raises an error because there is a piece in the destination.
-    # end
-    #
-    # it 'returns true for opposing color piece in destination' do
-    #   game = FactoryGirl.create(:game) # Would do this using FactoryGirl
-    #   piece1 = FactoryGirl.create(:piece, game: game, current_row_index: 1, current_column_index: 1, color: 'black')
-    #   FactoryGirl.create(:piece, game: game, current_row_index: 2, current_column_index: 2, color: 'white')
-    #
-    #   expect(piece1.move_to!(2, 2)).to eq true
-    #   # it returns true because a piece should be able to take an opposing piece's destination.
-    # end
-    #
+
     # it 'returns false for same color piece in destination' do
     #   game = FactoryGirl.create(:game) # Would do this using FactoryGirl
     #   piece1 = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)

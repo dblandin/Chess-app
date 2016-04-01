@@ -6,8 +6,8 @@ class Piece < ActiveRecord::Base
     invalid_input?(destination_row, destination_col) ||
       invalid_horizontal_move?(destination_row, destination_col) ||
       invalid_vertical_move?(destination_row, destination_col) ||
-      invalid_diagonal_move?(destination_row, destination_col) ||
-      spot_taken?(destination_row, destination_col)
+      invalid_diagonal_move?(destination_row, destination_col)
+      #spot_taken?(destination_row, destination_col)
   end
 
   def horizontal?(destination_row, destination_col)
@@ -26,7 +26,9 @@ class Piece < ActiveRecord::Base
   end
 
   def invalid_horizontal_move?(destination_row, destination_col)
+    #return false if (current_column_index - destination_col).abs == 1
     return false unless horizontal?(destination_row, destination_col)
+
     delta_col = current_column_index < destination_col ? 1 : -1
     current_col_position = current_column_index + delta_col
     spaces = []
@@ -40,6 +42,7 @@ class Piece < ActiveRecord::Base
 
   def invalid_vertical_move?(destination_row, destination_col)
     return false unless vertical?(destination_row, destination_col)
+    return false if (current_row_index - destination_row).abs == 1
     delta_row = current_row_index < destination_row ? 1 : -1
     current_row_position = current_row_index + delta_row
     spaces = []
