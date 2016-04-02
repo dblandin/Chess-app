@@ -2,10 +2,28 @@
 <hr  />
 
 <% @games.each do |game| %>
-  <% if game.open_seat? %>
+    <!-- Button trigger modal -->
     <p>
-      <%= link_to game.name, game_path(game) %> -
-      <%= link_to 'Join Game', '#' %>
+      <button type="button" class="" data-toggle="modal" data-target="#myModal">
+        <%= game.name %>
+      </button>
     </p>
-  <% end %>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Join Game</h4>
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Join</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
 <% end %>

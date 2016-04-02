@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   end
 
   def index
-    @games = Game.all
+    @games = Game.list_available_games
   end
 
   def create
