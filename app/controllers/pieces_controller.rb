@@ -19,8 +19,8 @@ class PiecesController < ApplicationController
 
       # Create backend logic in models and call them here
       # with the incoming data as arguments
-      piece = Piece.find_by(selected_piece_id)
-      piece.move_to!(final_square_row_index, final_square_column_index)
+
+      # @piece.move_to!(final_square_row_index, final_square_column_index)
       # data to be returned. Will contain the return of
       # the model logic.
       # Piece_captured is so javascript can update the
@@ -30,20 +30,19 @@ class PiecesController < ApplicationController
       # 'checkmate', etc. Different for each player.
 
       # Whos turn is next
-      if piece.color == "white"
-        #black players turn is next
+      if @piece.color == 'white'
+        # black players turn is next
         black_player_message = 'Your turn'
       else
-        #white player turn is next
+        # white player turn is next
         white_player_message = 'Your turn'
-      end 
+      end
 
-      game = Game.find_by(piece.game_id)
       valid_move = true
-      piece_captured_type = piece.type
-      piece_captured_color = piece.color
-      # white_player_message = nil
-      # black_player_message = nil
+      piece_captured_type = 'cool'
+      piece_captured_color = 'white'
+      white_player_message = nil
+      black_player_message = nil
 
       # feel free to add new data entries to the output
       respond_to do |format|
