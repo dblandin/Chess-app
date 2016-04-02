@@ -1,7 +1,5 @@
 class PiecesController < ApplicationController
-
   def update
-
     @piece = Piece.find(params[:id])
 
     if request.xhr?
@@ -13,7 +11,6 @@ class PiecesController < ApplicationController
       selected_piece_id = request['selected_piece_id'].to_i
       initial_square_row_index = request['initial_square_row_index'].to_i
       inital_square_column_index = request['initial_square_column_index'].to_i
-
 
       # Use these for move_to! method.
       # As well as @piece.

@@ -4,8 +4,8 @@ class GamesController < ApplicationController
   end
 
   def index
-    # Queries 20 games
-    @games = Game.open_seats
+    # Queries 10 games
+    @games = Game.list_available_games
   end
 
   def create
