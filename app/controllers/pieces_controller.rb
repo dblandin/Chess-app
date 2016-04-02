@@ -42,8 +42,8 @@ class PiecesController < ApplicationController
       valid_move = true
       piece_captured_type = piece.type
       piece_captured_color = piece.color
-      white_player_message = nil
-      black_player_message = nil
+      # white_player_message = nil
+      # black_player_message = nil
 
       # feel free to add new data entries to the output
       respond_to do |format|

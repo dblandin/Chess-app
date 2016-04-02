@@ -2,9 +2,7 @@
 <hr  />
 
 <% @games.each do |game| %>
-  <% if game.open_seat? %>
     <p>
       <%= link_to game.name, game_path(game) %>
     </p>
-  <% end %>
 <% end %>
