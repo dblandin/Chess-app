@@ -16,13 +16,14 @@
           <div class="modal-header">
             <h4 class="modal-title" id="myModalLabel">Join Game</h4>
           </div>
-          <div class="modal-body">
+          <%= simple_form_for(game) do |f| %>
+            <div class="modal-body">
 
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Join</button>
-          </div>
-
+            </div>
+            <div class="modal-footer">
+              <%= f.submit 'Join' %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
