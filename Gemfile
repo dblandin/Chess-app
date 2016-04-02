@@ -30,6 +30,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # Add Rubocop for style consistency
 gem 'rubocop', '~> 0.38.0', require: false
 
+# Add Code Climate for test coverage integration
+gem 'codeclimate-test-reporter', group: :test, require: nil
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -48,8 +51,13 @@ gem 'simple_form'
 # Static pages controller plugin
 gem 'high_voltage', '~> 2.4.0'
 
+# Icon fonts for App (not using bootstrap icons)
+gem 'ionicons-rails'
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails', '~> 4.0'
+  gem 'rails-pry'
 end
 
 group :doc do

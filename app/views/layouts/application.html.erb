@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= yield(:page_title) %></title>
+  <title>ChessMaster - <%= yield(:page_title) %></title>
 
   <%= favicon_link_tag 'logos/favicon.png' %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -9,17 +9,48 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container header-container">
+      <div class="navbar-header">
+        <% if user_signed_in? %>
+          <%= link_to "Chessmaster Logo", games_path, class: "navbar-brand full-logo text-hide" %>
+        <% else %>
+          <%= link_to "Chessmaster Logo", root_path, class: "navbar-brand full-logo text-hide" %>
+        <% end %>
+      </div>
+      <div class="navbar-avatar-container pull-right" id="mainSideNavTrigger">
+        <div class="avatar navbar-avatar">
+        </div>
+      </div>
+    </div>
+  </nav>
 
 
-<% if notice.present? %>
-  <p class="alert alert-info"><%= notice %></p>
-<% end %>
-<% if alert.present? %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
+  <div class="container main-container">
 
+      <div id="mainSideNav" class="main-sidenav">
+      </div>
 
-<%= yield %>
+      <div class="container-fluid" id="mainContentContainer">
+
+        <% if notice.present? %>
+          <p class="alert alert-info"><%= notice %></p>
+        <% end %>
+        <% if alert.present? %>
+          <p class="alert alert-danger"><%= alert %></p>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+
+    </div>
+  </footer>
+
 
 </body>
 </html>

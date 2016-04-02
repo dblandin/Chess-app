@@ -1,12 +1,11 @@
 require 'rails_helper'
-
 RSpec.describe StaticPagesController, type: :controller do
   describe 'GET root_path' do
     it 'renders the home page' do
       expect(get: root_url(subdomain: nil)).to route_to(
-      	 controller: 'static_pages',
-      	 action: 'show',
-      	 id: 'home')
+        controller: 'static_pages',
+        action: 'show',
+        id: 'home')
     end
   end
 
@@ -17,4 +16,7 @@ RSpec.describe StaticPagesController, type: :controller do
       expect(response).to render_template(file: "#{Rails.root}/public/404.html")
     end
   end
+
+  # TODO: implement test for root/wrongURL
+  # Current test exists for root/static_pages/wrongURL
 end

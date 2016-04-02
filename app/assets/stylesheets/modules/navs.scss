@@ -1,0 +1,58 @@
+/* =============================================
+App Layout Template
+==============================================*/
+
+.navbar-brand {
+  height: 100%;
+}
+
+.full-logo {
+  background: url('logos/logo-horizontal.svg') no-repeat;
+  width: 145px;
+  height: 100%;
+}
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  padding: $navbar-padding;
+  background-color: $white;
+  box-shadow: $header-shadow;
+  height: $navbar-height;
+  z-index: 100;
+}
+
+.navbar-header {
+  height: 100%;
+  padding: 0 10px;
+  width: 160px;
+  margin: 0;
+  display: inline-block;
+}
+
+.navbar-avatar {
+  height: 40px;
+  width: 30px;
+  top: 10px;
+  position: relative;
+  margin: auto;
+}
+
+.navbar-avatar-container {
+  height: $navbar-height;
+  position: relative;
+  width: 50px;
+  bottom: 7px;
+  left: 17px;
+  transition: $linear-transition;
+}
+
+.main-sidenav {
+  height: 100%;
+  width: 170px;
+  background-color: $white;
+  box-shadow: $element-shadow;
+  position: absolute;
+  right: 0;
+  display: none;
+}
