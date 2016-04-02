@@ -1,161 +1,154 @@
 <!-- Passes the current page title to application.html.erb -->
 <%= content_for :page_title, @game.name %>
 
-<!-- Passing data to javascript from rails -->
-<div data-pageid="<%= @game.id %>", id="railsVariables"></div>
-<!-- <h1><%= @game.name %></h1>
-     <h2><%= @game.inspect %></h2> -->
-
-<!-- Even though the divs are indented, ruby will indent
-     them back to the left -->
 <div class="chessgame-container">
   <div class="game-bar">
   </div>
 
   <table class="chessboard" id="chessBoard">
     <tbody>
-      <tr>
-        <td class="chess-light-square" id="row0col0">
-          <div class="chess-piece" id="rookWhite"></div>
+      <tr data-rowindex="0">
+        <td class="chess-light-square" data-columnindex="0">
+          <%= content_tag(:div, 'White Rook', class: 'chess-piece rook-white text-hide', data: { pieceid: @pieces[8].id }) %>
         </td>
-        <td class="chess-dark-square" id="row0col1">
-          <div class="chess-piece" id="knightWhite"></div>
+        <td class="chess-dark-square" data-column-index="1">
+          <%= content_tag(:div, 'White Knight', class: 'chess-piece knight-white text-hide', data: { pieceid: @pieces[10].id }) %>
         </td>
-        <td class="chess-light-square" id="row0col2">
-          <div class="chess-piece" id="bishopWhite"></div>
+        <td class="chess-light-square" data-column-index="2">
+          <%= content_tag(:div, 'White Bishop', class: 'chess-piece bishop-white text-hide', data: { pieceid: @pieces[12].id }) %>
         </td>
-        <td class="chess-dark-square" id="row0col3">
-          <div class="chess-piece" id="kingWhite"></div>
+        <td class="chess-dark-square" data-column-index="3">
+          <%= content_tag(:div, 'White King', class: 'chess-piece king-white text-hide', data: { pieceid: @pieces[15].id }) %>
         </td>
-        <td class="chess-light-square" id="row0col4">
-          <div class="chess-piece" id="queenWhite"></div>
+        <td class="chess-light-square" data-column-index="4">
+          <%= content_tag(:div, 'White Queen', class: 'chess-piece queen-white text-hide', data: { pieceid: @pieces[14].id }) %>
         </td>
-        <td class="chess-dark-square" id="row0col5">
-          <div class="chess-piece" id="bishopWhite"></div>
+        <td class="chess-dark-square" data-column-index="5">
+          <%= content_tag(:div, 'White Bishop', class: 'chess-piece bishop-white text-hide', data: { pieceid: @pieces[12].id }) %>
         </td>
-        <td class="chess-light-square" id="row0col6">
-          <div class="chess-piece" id="knightWhite"></div>
+        <td class="chess-light-square" data-column-index="6">
+          <%= content_tag(:div, 'White Knight', class: 'chess-piece knight-white text-hide', data: { pieceid: @pieces[11].id }) %>
         </td>
-        <td class="chess-dark-square" id="row0col7">
-          <div class="chess-piece" id="rookWhite"></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="chess-dark-square" id="row1col0">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-light-square" id="row1col1">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-dark-square" id="row1col2">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-light-square" id="row1col3">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-dark-square" id="row1col4">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-light-square" id="row1col5">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-dark-square" id="row1col6">
-          <div class="chess-piece" id="pawnWhite"></div>
-        </td>
-        <td class="chess-light-square" id="row1col7">
-          <div class="chess-piece" id="pawnWhite"></div>
+        <td class="chess-dark-square" data-column-index="7">
+          <%= content_tag(:div, 'White Rook', class: 'chess-piece rook-white text-hide', data: { pieceid: @pieces[9].id }) %>
         </td>
       </tr>
-      <tr>
-        <td class="chess-light-square" id="row2col0"></td>
-        <td class="chess-dark-square" id="row2col1"></td>
-        <td class="chess-light-square" id="row2col2"></td>
-        <td class="chess-dark-square" id="row2col3"></td>
-        <td class="chess-light-square" id="row2col4"></td>
-        <td class="chess-dark-square" id="row2col5"></td>
-        <td class="chess-light-square" id="row2col6"></td>
-        <td class="chess-dark-square" id="row2col7"></td>
-      </tr>
-      <tr>
-        <td class="chess-dark-square" id="row3col0"></td>
-        <td class="chess-light-square" id="row3col1"></td>
-        <td class="chess-dark-square" id="row3col2"></td>
-        <td class="chess-light-square" id="row3col3"></td>
-        <td class="chess-dark-square" id="row3col4"></td>
-        <td class="chess-light-square" id="row3col5"></td>
-        <td class="chess-dark-square" id="row3col6"></td>
-        <td class="chess-light-square" id="row3col7"></td>
-      </tr>
-      <tr>
-        <td class="chess-light-square" id="row4col0"></td>
-        <td class="chess-dark-square" id="row4col1"></td>
-        <td class="chess-light-square" id="row4col2"></td>
-        <td class="chess-dark-square" id="row4col3"></td>
-        <td class="chess-light-square" id="row4col4"></td>
-        <td class="chess-dark-square" id="row4col5"></td>
-        <td class="chess-light-square" id="row4col6"></td>
-        <td class="chess-dark-square" id="row4col7"></td>
-      </tr>
-      <tr>
-        <td class="chess-dark-square" id="row5col0"></td>
-        <td class="chess-light-square" id="row5col1"></td>
-        <td class="chess-dark-square" id="row5col2"></td>
-        <td class="chess-light-square" id="row5col3"></td>
-        <td class="chess-dark-square" id="row5col4"></td>
-        <td class="chess-light-square" id="row5col5"></td>
-        <td class="chess-dark-square" id="row5col6"></td>
-        <td class="chess-light-square" id="row5col7"></td>
-      </tr>
-      <tr>
-        <td class="chess-light-square" id="row6col0">
-          <div class="chess-piece" id="pawnBlack"></div>
+      <tr data-rowindex="1">
+        <td class="chess-dark-square" data-columnindex="0">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[0].id }) %>
         </td>
-        <td class="chess-dark-square" id="row6col1">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-light-square" data-columnindex="1">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[1].id }) %>
         </td>
-        <td class="chess-light-square" id="row6col2">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-dark-square" data-columnindex="2">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[2].id }) %>
         </td>
-        <td class="chess-dark-square" id="row6col3">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-light-square" data-columnindex="3">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[3].id }) %>
         </td>
-        <td class="chess-light-square" id="row6col4">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-dark-square" data-columnindex="4">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[4].id }) %>
         </td>
-        <td class="chess-dark-square" id="row6col5">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-light-square" data-columnindex="5">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[5].id }) %>
         </td>
-        <td class="chess-light-square" id="row6col6">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-dark-square" data-columnindex="6">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[6].id }) %>
         </td>
-        <td class="chess-dark-square" id="row6col7">
-          <div class="chess-piece" id="pawnBlack"></div>
+        <td class="chess-light-square" data-columnindex="7">
+          <%= content_tag(:div, 'White Pawn', class: 'chess-piece pawn-white text-hide', data: { pieceid: @pieces[7].id }) %>
         </td>
       </tr>
-      <tr>
-        <td class="chess-dark-square" id="row7col0">
-          <div class="chess-piece" id="rookBlack"></div>
+      <tr data-rowindex="2">
+        <td class="chess-light-square" data-columnindex="0">
+        <td class="chess-dark-square" data-columnindex="1">
+        <td class="chess-light-square" data-columnindex="2">
+        <td class="chess-dark-square" data-columnindex="3">
+        <td class="chess-light-square" data-columnindex="4">
+        <td class="chess-dark-square" data-columnindex="5">
+        <td class="chess-light-square" data-columnindex="6">
+        <td class="chess-dark-square" data-columnindex="7">
+      </tr>
+      <tr data-rowindex="3">
+        <td class="chess-dark-square" data-columnindex="0">
+        <td class="chess-light-square" data-columnindex="1">
+        <td class="chess-dark-square" data-columnindex="2">
+        <td class="chess-light-square" data-columnindex="3">
+        <td class="chess-dark-square" data-columnindex="4">
+        <td class="chess-light-square" data-columnindex="5">
+        <td class="chess-dark-square" data-columnindex="6">
+        <td class="chess-light-square" data-columnindex="7">
+      </tr>
+      <tr data-rowindex="4">
+        <td class="chess-light-square" data-columnindex="0">
+        <td class="chess-dark-square" data-columnindex="1">
+        <td class="chess-light-square" data-columnindex="2">
+        <td class="chess-dark-square" data-columnindex="3">
+        <td class="chess-light-square" data-columnindex="4">
+        <td class="chess-dark-square" data-columnindex="5">
+        <td class="chess-light-square" data-columnindex="6">
+        <td class="chess-dark-square" data-columnindex="7">
+      </tr>
+      <tr data-rowindex="5">
+        <td class="chess-dark-square" data-columnindex="0">
+        <td class="chess-light-square" data-columnindex="1">
+        <td class="chess-dark-square" data-columnindex="2">
+        <td class="chess-light-square" data-columnindex="3">
+        <td class="chess-dark-square" data-columnindex="4">
+        <td class="chess-light-square" data-columnindex="5">
+        <td class="chess-dark-square" data-columnindex="6">
+        <td class="chess-light-square" data-columnindex="7">
+      </tr>
+      <tr data-rowindex="6">
+        <td class="chess-light-square" data-columnindex="0">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[16].id }) %>
         </td>
-        <td class="chess-light-square" id="row7col1">
-          <div class="chess-piece" id="knightBlack"></div>
+        <td class="chess-dark-square" data-columnindex="1">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[17].id }) %>
         </td>
-        <td class="chess-dark-square" id="row7col2">
-          <div class="chess-piece" id="bishopBlack"></div>
+        <td class="chess-light-square" data-columnindex="2">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[18].id }) %>
         </td>
-        <td class="chess-light-square" id="row7col3">
-          <div class="chess-piece" id="kingBlack"></div>
+        <td class="chess-dark-square" data-columnindex="3">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[19].id }) %>
         </td>
-        <td class="chess-dark-square" id="row7col4">
-          <div class="chess-piece" id="queenBlack"></div>
+        <td class="chess-light-square" data-columnindex="4">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[20].id }) %>
         </td>
-        <td class="chess-light-square" id="row7col5">
-          <div class="chess-piece" id="bishopBlack"></div>
+        <td class="chess-dark-square" data-columnindex="5">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[21].id }) %>
         </td>
-        <td class="chess-dark-square" id="row7col6">
-          <div class="chess-piece" id="knightBlack"></div>
+        <td class="chess-light-square" data-columnindex="6">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[22].id }) %>
         </td>
-        <td class="chess-light-square" id="row7col7">
-          <div class="chess-piece" id="rookBlack"></div>
+        <td class="chess-dark-square" data-columnindex="7">
+          <%= content_tag(:div, 'Black Pawn', class: 'chess-piece pawn-black text-hide', data: { pieceid: @pieces[23].id }) %>
+        </td>
+      </tr>
+      <tr data-rowindex="7">
+        <td class="chess-dark-square" data-columnindex="0">
+          <%= content_tag(:div, 'Black Rook', class: 'chess-piece rook-black text-hide', data: { pieceid: @pieces[24].id }) %>
+        </td>
+        <td class="chess-light-square" data-column-index="1">
+          <%= content_tag(:div, 'Black Knight', class: 'chess-piece knight-black text-hide', data: { pieceid: @pieces[26].id }) %>
+        </td>
+        <td class="chess-dark-square" data-column-index="2">
+          <%= content_tag(:div, 'Black Bishop', class: 'chess-piece bishop-black text-hide', data: { pieceid: @pieces[28].id }) %>
+        </td>
+        <td class="chess-light-square" data-column-index="3">
+          <%= content_tag(:div, 'Black King', class: 'chess-piece king-black text-hide', data: { pieceid: @pieces[31].id }) %>
+        </td>
+        <td class="chess-dark-square" data-column-index="4">
+          <%= content_tag(:div, 'Black Queen', class: 'chess-piece queen-black text-hide', data: { pieceid: @pieces[30].id }) %>
+        </td>
+        <td class="chess-light-square" data-column-index="5">
+          <%= content_tag(:div, 'Black Bishop', class: 'chess-piece bishop-black text-hide', data: { pieceid: @pieces[29].id }) %>
+        </td>
+        <td class="chess-dark-square" data-column-index="6">
+          <%= content_tag(:div, 'Black Knight', class: 'chess-piece knight-black text-hide', data: { pieceid: @pieces[27].id }) %>
+        </td>
+        <td class="chess-light-square" data-column-index="7">
+          <%= content_tag(:div, 'Black Rook', class: 'chess-piece rook-black text-hide', data: { pieceid: @pieces[25].id }) %>
         </td>
       </tr>
     </tbody>

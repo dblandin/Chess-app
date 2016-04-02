@@ -3,9 +3,11 @@ $(document).ready(function() {
   // Move Chesspieces
   var isPieceSelected = false;
   var initialSquare;
+  var initialSquareRowIndex;
+  var initialSquareColumnIndex;
   var initialSquareColorBegin;
   var initialSelectedPiece;
-  var pageId = $('#railsVariables').data('pageid');
+  var initialSelectedPieceId;
 
   $('.chess-dark-square, .chess-light-square').on('click', function() {
     if (isPieceSelected === false) {
@@ -14,6 +16,9 @@ $(document).ready(function() {
         initialSquare = $(this);
         initialSelectedPiece = initialSquare.children(':first');
         initialSquareColorBegin = initialSquare.css('background-color');
+        initialSquareRowIndex = initialSquare.parent().data('rowindex');
+        initialSquareColumnIndex = initialSquare.data('columnindex');
+        initialSelectedPieceId = initialSelectedPiece.data('pieceid');
 
         initialSquare.css('background-color', 'rgb(248, 155, 56)');
         isPieceSelected = true;
@@ -21,24 +26,22 @@ $(document).ready(function() {
     } else {
       initialSquare.css('background-color', initialSquareColorBegin);
       var finalSquare = $(this);
-      var obstructingPiece = null;
+      var finalSquareRowIndex = finalSquare.parent().data('rowindex');
+      var finalSquareColumnIndex = finalSquare.data('columnindex');
 
-      if (finalSquare.attr('id') != initialSquare.attr('id')) {
-        if (finalSquare.children().length > 0) {
-          obstructingPiece = finalSquare.children(':first');
-        }
-
+      if ( finalSquare.children(':first').data('pieceid') != initialSelectedPieceId ) {
         var params = {
-          initial_square: initialSquare.attr('id'),
-          final_square: finalSquare.attr('id'),
-          selected_piece: initialSelectedPiece.attr('id'),
+          initial_square_row_index: initialSquareRowIndex,
+          initial_square_column_index: initialSquareColumnIndex,
+          final_square_row_index: finalSquareRowIndex,
+          final_square_column_index: finalSquareColumnIndex,
+          selected_piece_id: initialSelectedPieceId
         }
-
 
         // Move piece ajax request begin
         $.ajax({
           method: 'patch',
-          url: '/games/' + pageId,
+          url: '/pieces/' + initialSelectedPieceId,
           data: params,
           success: function(data) {
             if (data.validMove === true) {
