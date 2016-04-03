@@ -24,7 +24,6 @@ RSpec.describe Piece, type: :model do
       piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
 
       expect(piece.obstructed?(1, 0)).to eq false
-      # it is obstructed because there is a piece in position row: 1, col: 2
     end
 
     it 'returns false for pieces with no diagnal inbetween' do
@@ -32,7 +31,6 @@ RSpec.describe Piece, type: :model do
       piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
 
       expect(piece.obstructed?(1, 1)).to eq false
-      # it is obstructed because there is a piece in position row: 1, col: 2
     end
 
     it 'returns false for pieces with no horizontal inbetween' do
@@ -40,7 +38,6 @@ RSpec.describe Piece, type: :model do
       piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
 
       expect(piece.obstructed?(0, 1)).to eq false
-      # it is obstructed because there is a piece in position row: 1, col: 2
     end
 
     it 'returns true for vertical-down obstructions' do

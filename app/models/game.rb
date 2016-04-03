@@ -9,12 +9,6 @@ class Game < ActiveRecord::Base
     white_player_id.nil? || black_player_id.nil?
   end
 
-  def set_captured_to_false
-    pieces.each do |piece|
-      piece.update_attributes(captured: false)
-    end
-  end
-
   def populate_board! # rubocop:disable Metrics/AbcSize
     (0..7).each do |i|
       pieces.create(color: 'white', type: 'Pawn', current_row_index: 1,
