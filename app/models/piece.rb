@@ -6,8 +6,7 @@ class Piece < ActiveRecord::Base
     invalid_input?(destination_row, destination_col) ||
       invalid_horizontal_move?(destination_row, destination_col) ||
       invalid_vertical_move?(destination_row, destination_col) ||
-      invalid_diagonal_move?(destination_row, destination_col) ||
-      invalid_destination?(destination_row, destination_col)
+      invalid_diagonal_move?(destination_row, destination_col)
   end
 
   def horizontal?(destination_row, destination_col)
@@ -27,6 +26,7 @@ class Piece < ActiveRecord::Base
 
   def invalid_horizontal_move?(destination_row, destination_col)
     return false unless horizontal?(destination_row, destination_col)
+
     delta_col = current_column_index < destination_col ? 1 : -1
     current_col_position = current_column_index + delta_col
     spaces = []
@@ -40,6 +40,7 @@ class Piece < ActiveRecord::Base
 
   def invalid_vertical_move?(destination_row, destination_col)
     return false unless vertical?(destination_row, destination_col)
+    return false if (current_row_index - destination_row).abs == 1
     delta_row = current_row_index < destination_row ? 1 : -1
     current_row_position = current_row_index + delta_row
     spaces = []
@@ -79,8 +80,25 @@ class Piece < ActiveRecord::Base
     destination_row > 7 || destination_col > 7
   end
 
-  def invalid_destination?(destination_row, destination_col)
-    # # This has a piece in the destination, but not in between the pieces.
-    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
+  def spot_taken?(destination_row, destination_col)
+    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
+  end
+
+  def move_to!(destination_row, destination_col)
+    # First check to see if there is a piece in the location its moving to
+    if spot_taken?(destination_row, destination_col)
+      blocker_piece = game.pieces.find_by_current_row_index_and_current_column_index(destination_row, destination_col)
+      # If the piece here is of Opposite color and not obstructed, remove the piece else the move should fail
+      if color != blocker_piece.color && obstructed?(destination_row, destination_col) == false
+        # Remove the old piece
+        blocker_piece.update_attributes(current_row_index: nil, current_column_index: nil, captured: true)
+        # Place piece in the removed pieces location
+        update_attributes(current_row_index: destination_row, current_column_index: destination_col)
+      end
+      # There is not a piece in the spot so check the obstructions next
+    elsif obstructed?(destination_row, destination_col) == false
+      # move the piece to the location
+      update_attributes(current_row_index: destination_row, current_column_index: destination_col)
+    end
   end
 end
