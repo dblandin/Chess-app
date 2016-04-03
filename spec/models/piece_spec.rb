@@ -113,14 +113,6 @@ RSpec.describe Piece, type: :model do
       expect(piece.current_column_index).to eq 0
     end
 
-    it 'returns true for spot taken' do
-      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
-      piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
-
-      expect(piece.spot_taken?(1, 1)).to eq true
-      # it raises an error because there is a piece in the destination.
-    end
-
     it 'moves the piece if the spot is taken with an opposite color' do
       game = FactoryGirl.create(:game)
       white_pawn = game.pieces.find_by_current_row_index_and_current_column_index(1, 0)
@@ -150,6 +142,16 @@ RSpec.describe Piece, type: :model do
       white_rook.move_to!(1, 0)
       expect(white_rook.current_row_index).to eq 0
       expect(white_rook.current_column_index).to eq 0
+    end
+  end
+
+  describe 'spot_taken?' do
+    it 'returns true for spot taken' do
+      game = FactoryGirl.create(:game) # Would do this using FactoryGirl
+      piece = game.pieces.find_by_current_row_index_and_current_column_index(0, 0)
+
+      expect(piece.spot_taken?(1, 1)).to eq true
+      # it raises an error because there is a piece in the destination.
     end
   end
 end
