@@ -81,8 +81,7 @@ class Piece < ActiveRecord::Base
   end
 
   def spot_taken?(destination_row, destination_col)
-    # This has a piece in the destination, but not in between the pieces.
-    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).count > 0
+    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col).exists?
   end
 
   def move_to!(destination_row, destination_col)
