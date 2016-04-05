@@ -85,7 +85,6 @@ class Piece < ActiveRecord::Base
     game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
   end
 
-
   def distance(destination_row, destination_col)
     if vertical?(destination_row, destination_col)
       return (destination_row - current_row_index).abs
