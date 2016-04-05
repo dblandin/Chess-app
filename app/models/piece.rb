@@ -99,6 +99,7 @@ class Piece < ActiveRecord::Base
       return (destination_col - current_column_index).abs
     else
       raise 'Not Allowed' # Raise error message instead
+    end
   end
 
   def spot_taken?(destination_row, destination_col)
