@@ -15,12 +15,12 @@ class Piece < ActiveRecord::Base
   end
 
   def vertical?(destination_row, destination_col)
-    # is the column the same, but the row different?
+    # Is the column the same, but the row different?
     (current_column_index == destination_col) && (current_row_index != destination_row)
   end
 
   def diagonal?(destination_row, destination_col)
-    # is the row and column different?
+    # Are the row and column the same?
     (current_row_index - destination_row).abs == (current_column_index - destination_col).abs
   end
 
@@ -77,7 +77,28 @@ class Piece < ActiveRecord::Base
   end
 
   def invalid_input?(destination_row, destination_col)
-    destination_row > 7 || destination_col > 7
+    destination_row > 7 || destination_col > 7 || destination_row < 0 || destination_col < 0
+  end
+
+  def destination_with_piece_of_same_color?(destination_row, destination_col)
+    # method describes that we are assessing color of destination location piece
+    game.pieces.where(current_row_index: destination_row, current_column_index: destination_col, color: color).count > 0
+  end
+
+
+  def distance(destination_row, destination_col)
+    if vertical?(destination_row, destination_col)
+      return (destination_row - current_row_index).abs
+    elsif horizontal?(destination_row, destination_col)
+      return (destination_col - current_column_index).abs
+    elsif diagonal?(destination_row, destination_col)
+      # We're taking advantage of the fact that our diagonal? method
+      # checks for a true diagonal (Equal up/down and left/right) distance
+      # Because of this we can only return one number instead of two, and
+      # can be sure that the other is equal.
+      return (destination_col - current_column_index).abs
+    else
+      raise 'Not Allowed' # Raise error message instead
   end
 
   def spot_taken?(destination_row, destination_col)
