@@ -101,6 +101,8 @@ RSpec.describe Piece, type: :model do
 
       expect(piece1.obstructed?(100, 300)).to eq true
       # it raises an error because there is an invalid input. There is no row: 100, col: 300
+      expect(piece1.obstructed?(-100, -300)).to eq true
+      # it raises an error because there is an invalid input. There is no row: -100, col: -300
     end
   end
 
