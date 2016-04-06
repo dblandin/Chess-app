@@ -20,16 +20,13 @@ class Pawn < Piece
       return false if destination_row > current_row_index
     end
 
-    if diagonal?(destination_row, destination_col) && !spot_taken?(destination_row, destination_col) && distance(destination_row, destination_col) == 1
+    if diagonal?(destination_row, destination_col) && !spot_taken?(destination_row, destination_col)
       # Returns false if trying to move diagonal and there is no piece there
       false
-    elsif vertical?(destination_row, destination_col) && !spot_taken?(destination_row, destination_col) && distance(destination_row, destination_col) == 1
-      # Returns true if it can move forward one space
+    elsif vertical?(destination_row, destination_col) && !spot_taken?(destination_row, destination_col)
+      # Returns true if it can move forward one space or two
       true
-    elsif vertical?(destination_row, destination_col) && !spot_taken?(destination_row, destination_col) && distance(destination_row, destination_col) == 2
-      # Returns true if it can move forward two spaces
-      true
-    elsif diagonal?(destination_row, destination_col) && spot_taken?(destination_row, destination_col) && !same_color?(destination_row, destination_col) && distance(destination_row, destination_col) == 1
+    elsif diagonal?(destination_row, destination_col) && spot_taken?(destination_row, destination_col) && !same_color?(destination_row, destination_col)
       # Returns true if it can move diagonal to capture a piece
       true
     end
