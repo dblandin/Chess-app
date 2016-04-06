@@ -9,6 +9,14 @@ RSpec.describe Pawn, type: :model do
       expect(white_pawn.valid_move?(3, 2)).to eq false
     end
 
+    it 'should return false if trying to move backwards' do
+      game = FactoryGirl.create(:game)
+      # Select pawn
+      white_pawn = game.pieces.find_by_current_row_index_and_current_column_index(1, 0)
+      white_pawn.update_attributes(current_row_index: 3, current_column_index: 0)
+      expect(white_pawn.valid_move?(2, 0)).to eq false
+    end
+
     it 'should return false if trying to move diagonal with no capture' do
       game = FactoryGirl.create(:game)
       # Select pawn
@@ -35,11 +43,18 @@ RSpec.describe Pawn, type: :model do
       expect(white_pawn.valid_move?(4, 0)).to eq false
     end
 
-    it 'should return true if the first move to move tries to move two spaces forward' do
+    it 'should return true if the first move tries to move two spaces forward(white)' do
       game = FactoryGirl.create(:game)
       # Select pawn
       white_pawn = game.pieces.find_by_current_row_index_and_current_column_index(1, 0)
       expect(white_pawn.valid_move?(3, 0)).to eq true
+    end
+
+    it 'should return true if the first move tries to move two spaces forward(black)' do
+      game = FactoryGirl.create(:game)
+      # Select pawn
+      black_pawn = game.pieces.find_by_current_row_index_and_current_column_index(6, 0)
+      expect(black_pawn.valid_move?(4, 0)).to eq true
     end
 
     it 'should return true if it can move one space forward to an empty spot' do
@@ -57,7 +72,7 @@ RSpec.describe Pawn, type: :model do
       black_pawn = game.pieces.find_by_current_row_index_and_current_column_index(6, 0)
       # Move black pawn to be in the way
       black_pawn.update_attributes(current_row_index: 2, current_column_index: 1)
-      expect(white_pawn.valid_move?(2,1)).to eq true
+      expect(white_pawn.valid_move?(2, 1)).to eq true
     end
   end
 end
