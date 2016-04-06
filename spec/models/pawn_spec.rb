@@ -8,6 +8,14 @@ RSpec.describe Pawn, type: :model do
       expect(white_pawn.valid_move?(3,0)).to eq true
     end
 
+    it 'should return false if trying to move two spaces on anymove but the first' do
+      game = FactoryGirl.create(:game)
+      # Select pawn
+      white_pawn = game.pieces.find_by_current_row_index_and_current_column_index(1, 0)
+      white_pawn.update_attributes(current_row_index: 2, current_column_index: 0)
+      expect(white_pawn.valid_move?(4,0)).to eq false
+    end
+
     it 'should return true if it can move one space forward to an empty spot' do
       game = FactoryGirl.create(:game)
       # Select pawn
