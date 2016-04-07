@@ -22,4 +22,11 @@ FactoryGirl.define do
     color nil
     captured nil
   end
+
+  factory :queen, class: Queen do
+    current_row_index 4
+    current_column_index 4
+    color "white"
+  end
+
 end
