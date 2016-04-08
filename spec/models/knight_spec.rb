@@ -13,8 +13,6 @@ RSpec.describe Knight, type: :model do
       game = FactoryGirl.create(:game)
       # Select white knight from the board
       white_knight = game.pieces.find_by_current_row_index_and_current_column_index(0, 1)
-      # Select white pawn from the board
-      white_pawn = game.pieces.find_by_current_row_index_and_current_column_index(1, 3)
       # Should return false as there is an existing same color piece in the destination square
       expect(white_knight.valid_move?(1, 3)).to eq false
     end
