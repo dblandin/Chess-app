@@ -1,4 +1,4 @@
----
+
 engines:
   brakeman:
     enabled: true
